@@ -1,0 +1,11 @@
+name = "karmic-cache"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+SUPABASE_URL = "https://nnmoiqupracpyrsyxqxf.supabase.co"
+CACHE_TTL = "120"
+
+[[r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "profile-photos"

@@ -1,0 +1,359 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Gender {
+  Male
+  Female
+  Other
+}
+
+enum PracticeFrequency {
+  Daily
+  Weekly
+  Monthly
+  Occasionally
+}
+
+enum LookingFor {
+  Life_Partner
+  Spiritual_Companion
+  Friend
+  Community_Connection
+}
+
+enum PartnerLocation {
+  Same_City
+  Same_State
+  Anywhere
+}
+
+enum PartnerCommunity {
+  Same_Community
+  Any_Community
+}
+
+enum Diet {
+  Vegetarian
+  Vegan
+  Non_Vegetarian
+  Eggetarian
+}
+
+enum Alcohol {
+  Never
+  Occasionally
+  Socially
+}
+
+enum Exercise {
+  Daily
+  Weekly
+  Occasionally
+  Never
+}
+
+enum Tier {
+  free
+  seeker
+  ultimate
+}
+
+enum VerificationStatus {
+  pending
+  approved
+  rejected
+}
+
+enum ConnectionStatus {
+  pending
+  accepted
+  declined
+}
+
+enum MessagePermission {
+  mutual
+  anyone
+}
+
+enum ContactVisibility {
+  nobody
+  mutual
+  ultimate
+}
+
+enum NotificationType {
+  like
+  match
+  message
+  view
+  upgrade
+  system
+}
+
+enum SubscriptionStatus {
+  active
+  cancelled
+  expired
+}
+
+model Profile {
+  id                   String   @id @default(uuid())
+  name                 String?
+  age                  Int?
+  gender               Gender?
+  location             String?
+  photos               String[]
+
+  profession           String?
+  income_range         String?
+  education            String?
+  family_status        String?
+  family_values        String?
+
+  spiritual_community         String?
+  spiritual_community_other   String?
+  spiritual_practices         String[]
+  gotra                       String?
+  primary_practice            String?
+  practice_frequency          PracticeFrequency?
+  practice_hours              String?
+  years_practicing            Int?
+  favorite_space              String?
+
+  guru_connection       String?
+  spiritual_commitment  String?
+  life_goals            String?
+  bio                   String?
+  about_me              String?
+  non_negotiable        String?
+
+  answers_to_questions  Json?       @default("{}")
+  looking_for           LookingFor?
+  partner_age_min       Int        @default(18)
+  partner_age_max       Int        @default(80)
+  partner_location      PartnerLocation?
+  partner_community     PartnerCommunity?
+  partner_lifestyle     String[]
+
+  diet                  Diet?
+  alcohol               Alcohol?
+  smoking               Boolean    @default(false)
+  morning_person        Boolean    @default(false)
+  exercise              Exercise?
+
+  birth_date            DateTime?
+  birth_time            String?
+  birth_location        String?
+  birth_timezone        String?
+  sun_sign              String?
+  moon_sign             String?
+  nakshatra             String?
+
+  is_verified           Boolean                @default(false)
+  verification_status   VerificationStatus     @default(pending)
+  verification_photo_url String?
+  verification_id_url   String?
+  ai_archetype          String?
+
+  tier                  Tier       @default(free)
+  premium_until         DateTime?
+  daily_likes_used      Int        @default(0)
+  daily_messages_used   Int        @default(0)
+  last_reset_date       DateTime   @default(now())
+  profile_completeness  Int        @default(0)
+
+  message_permission    MessagePermission    @default(mutual)
+  contact_visibility    ContactVisibility    @default(nobody)
+  phone_visible         Boolean              @default(false)
+  email_visible         Boolean              @default(false)
+  notifications_enabled Boolean              @default(false)
+  swipe_gesture_enabled Boolean              @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  connections_from   Connection[]   @relation("from_user")
+  connections_to     Connection[]   @relation("to_user")
+  matches_as_user1   Match[]        @relation("user1")
+  matches_as_user2   Match[]        @relation("user2")
+  messages_sent      Message[]
+  profile_views_given  ProfileView[] @relation("viewer")
+  profile_views_received ProfileView[] @relation("viewed")
+  notifications      Notification[]
+  subscriptions      Subscription[]
+  profile_embedding  ProfileEmbedding?
+  astrological_data  AstrologicalData?
+  blindspot_analysis BlindspotAnalysis?
+
+  @@index([spiritual_community])
+  @@index([location])
+  @@index([gender])
+  @@index([age])
+  @@index([tier])
+  @@index([profile_completeness])
+}
+
+model AstrologyMatrix {
+  id          Int    @id @default(autoincrement())
+  sign1       String
+  sign2       String
+  score       Int    @default(50)
+  description String?
+
+  @@unique([sign1, sign2])
+}
+
+model AstrologicalData {
+  id          String   @id @default(uuid())
+  profileId   String   @unique
+  sunSign     String?
+  moonSign    String?
+  nakshatra   String?
+  risingSign  String?
+  rawData     Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model BlindspotAnalysis {
+  id          String   @id @default(uuid())
+  profileId   String   @unique
+  analysis    Json
+  generatedAt DateTime @default(now())
+  profile     Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Connection {
+  id              String           @id @default(uuid())
+  from_user_id    String
+  to_user_id      String
+  status          ConnectionStatus @default(pending)
+  interest_message String?
+  created_at      DateTime         @default(now())
+  updated_at      DateTime         @default(now()) @updatedAt
+
+  from_user Profile @relation("from_user", fields: [from_user_id], references: [id], onDelete: Cascade)
+  to_user   Profile @relation("to_user", fields: [to_user_id], references: [id], onDelete: Cascade)
+
+  @@unique([from_user_id, to_user_id])
+  @@index([status])
+  @@index([to_user_id, status])
+  @@index([from_user_id, status])
+}
+
+model Match {
+  id        String   @id @default(uuid())
+  user1_id  String
+  user2_id  String
+  created_at DateTime @default(now())
+
+  user1 Profile @relation("user1", fields: [user1_id], references: [id], onDelete: Cascade)
+  user2 Profile @relation("user2", fields: [user2_id], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@unique([user1_id, user2_id])
+  @@index([user1_id])
+  @@index([user2_id])
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  match_id   String
+  sender_id  String
+  content    String
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  match  Match   @relation(fields: [match_id], references: [id], onDelete: Cascade)
+  sender Profile @relation(fields: [sender_id], references: [id], onDelete: Cascade)
+
+  @@index([match_id])
+}
+
+model ProfileView {
+  id         String   @id @default(uuid())
+  viewer_id  String
+  viewed_id  String
+  created_at DateTime @default(now())
+
+  viewer Profile @relation("viewer", fields: [viewer_id], references: [id], onDelete: Cascade)
+  viewed Profile @relation("viewed", fields: [viewed_id], references: [id], onDelete: Cascade)
+
+  @@unique([viewer_id, viewed_id])
+  @@index([viewed_id])
+}
+
+model Notification {
+  id         String           @id @default(uuid())
+  user_id    String
+  type       NotificationType
+  title      String
+  body       String?
+  data       Json?
+  is_read    Boolean          @default(false)
+  created_at DateTime         @default(now())
+
+  user Profile @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id, is_read])
+}
+
+model Subscription {
+  id                      String             @id @default(uuid())
+  user_id                 String
+  plan                    String
+  razorpay_subscription_id String?
+  razorpay_plan_id        String?
+  status                  SubscriptionStatus @default(active)
+  start_date              DateTime           @default(now())
+  expiry_date             DateTime?
+  created_at              DateTime           @default(now())
+
+  user Profile @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model ProfileEmbedding {
+  id         String   @id @default(uuid())
+  profile_id String   @unique
+  embedding  Unsupported("vector(384)")?
+  updated_at DateTime @default(now()) @updatedAt
+
+  profile Profile @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+}
+
+model MatchInsight {
+  id          String   @id @default(uuid())
+  profilePair String   @unique
+  insight     String
+  created_at  DateTime @default(now())
+}
+
+model PairBlindspotAnalysis {
+  id           String   @id @default(uuid())
+  profilePair  String   @unique
+  analysis     Json
+  generated_at DateTime @default(now())
+}
+
+model PairCompatibility {
+  id            String   @id @default(uuid())
+  profilePair   String   @unique
+  result        Json
+  created_at    DateTime @default(now())
+}
+
+model FeatureFlag {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       Json
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
