@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer } from "./db/feature-flags";
 
-const supabase = createAdminClient();
+function supabase() { return createAdminClient(); }
 
 export interface NotificationPayload {
   title: string;
@@ -11,7 +11,7 @@ export interface NotificationPayload {
 }
 
 async function getUserTier(userId: string): Promise<string> {
-  const { data: profile } = await supabase
+  const { data: profile } = await supabase()
     .from("Profile")
     .select("tier")
     .eq("id", userId)

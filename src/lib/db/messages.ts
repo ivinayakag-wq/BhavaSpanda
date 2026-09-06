@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer, getEarlyOfferLimits, getPremiumLimits } from "./feature-flags";
 
-const supabase = createAdminClient();
+function supabase() { return createAdminClient(); }
 
 async function getTierLimits(): Promise<Record<string, { maxMessages: number; canNotify: boolean }>> {
   const earlyOffer = await isEarlyOffer();
@@ -22,7 +22,7 @@ async function getTierLimits(): Promise<Record<string, { maxMessages: number; ca
 }
 
 export async function sendMessage(matchId: string, senderId: string, content: string) {
-  const { data: match } = await supabase
+  const { data: match } = await supabase()
     .from("Match")
     .select("user1_id, user2_id")
     .eq("id", matchId)
@@ -31,7 +31,7 @@ export async function sendMessage(matchId: string, senderId: string, content: st
 
   const receiverId = match.user1_id === senderId ? match.user2_id : match.user1_id;
 
-  const { data: profile } = await supabase
+  const { data: profile } = await supabase()
     .from("Profile")
     .select("tier, daily_messages_used, last_reset_date")
     .eq("id", senderId)
@@ -53,14 +53,14 @@ export async function sendMessage(matchId: string, senderId: string, content: st
     return { ok: false, message: null, blocked: true };
   }
 
-  const { data: message } = await supabase
+  const { data: message } = await supabase()
     .from("Message")
     .insert({ match_id: matchId, sender_id: senderId, content: content.trim() })
     .select()
     .single();
 
   const newCount = isNewDay ? 1 : msgsUsed + 1;
-  await supabase
+  await supabase()
     .from("Profile")
     .update({
       daily_messages_used: newCount,
@@ -69,13 +69,13 @@ export async function sendMessage(matchId: string, senderId: string, content: st
     .eq("id", senderId);
 
   if (limits.canNotify) {
-    const { data: senderProfile } = await supabase
+    const { data: senderProfile } = await supabase()
       .from("Profile")
       .select("name")
       .eq("id", senderId)
       .single();
 
-    await supabase.from("Notification").insert({
+    await supabase().from("Notification").insert({
       user_id: receiverId,
       type: "message",
       title: "New Message",
@@ -88,7 +88,7 @@ export async function sendMessage(matchId: string, senderId: string, content: st
 }
 
 export async function getMessages(matchId: string) {
-  const { data } = await supabase
+  const { data } = await supabase()
     .from("Message")
     .select("*")
     .eq("match_id", matchId)
@@ -98,7 +98,7 @@ export async function getMessages(matchId: string) {
 }
 
 export async function getMatches(userId: string) {
-  const { data: matches } = await supabase
+  const { data: matches } = await supabase()
     .from("Match")
     .select(`
       id, created_at, user1_id, user2_id,
@@ -112,7 +112,7 @@ export async function getMatches(userId: string) {
     m.user1_id === userId ? m.user2_id : m.user1_id,
   );
 
-  const { data: profiles } = await supabase
+  const { data: profiles } = await supabase()
     .from("Profile")
     .select("id, name, age, location, photos, ai_archetype, tier")
     .in("id", otherIds);

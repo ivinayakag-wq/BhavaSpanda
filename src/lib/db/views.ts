@@ -1,11 +1,11 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 
-const supabase = createAdminClient();
+function supabase() { return createAdminClient(); }
 
 export async function recordView(viewerId: string, viewedId: string) {
   if (viewerId === viewedId) return;
 
-  const { data: existing } = await supabase
+  const { data: existing } = await supabase()
     .from("ProfileView")
     .select("id")
     .eq("viewer_id", viewerId)
@@ -14,14 +14,14 @@ export async function recordView(viewerId: string, viewedId: string) {
 
   if (existing) return;
 
-  await supabase.from("ProfileView").insert({
+  await supabase().from("ProfileView").insert({
     viewer_id: viewerId,
     viewed_id: viewedId,
   });
 }
 
 export async function getViewsCount(userId: string): Promise<number> {
-  const { count } = await supabase
+  const { count } = await supabase()
     .from("ProfileView")
     .select("id", { count: "exact", head: true })
     .eq("viewed_id", userId);
@@ -30,7 +30,7 @@ export async function getViewsCount(userId: string): Promise<number> {
 }
 
 export async function getViewersList(userId: string) {
-  const { data: views } = await supabase
+  const { data: views } = await supabase()
     .from("ProfileView")
     .select(`
       id, created_at,

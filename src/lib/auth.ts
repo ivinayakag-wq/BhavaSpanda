@@ -1,8 +1,6 @@
 import { createClient } from "@/lib/supabase-server";
 import { createAdminClient } from "@/lib/supabase-admin";
 
-const supabase = createAdminClient();
-
 export type AuthUser = { id: string; email?: string };
 
 export async function requireUser(): Promise<AuthUser> {
@@ -18,6 +16,7 @@ export async function requireUser(): Promise<AuthUser> {
 
 export async function requireProfile(): Promise<any> {
   const authUser = await requireUser();
+  const supabase = createAdminClient();
 
   const { data: profile } = await supabase
     .from("Profile")

@@ -1,6 +1,6 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 
-const supabase = createAdminClient();
+function supabase() { return createAdminClient(); }
 
 const PROFILE_COLUMNS = `
   id, name, age, gender, location, photos, bio, tier,
@@ -29,7 +29,7 @@ export interface FilterCriteria {
 }
 
 export async function getCurrentUser(userId: string) {
-  const { data: profile } = await supabase
+  const { data: profile } = await supabase()
     .from("Profile")
     .select(`
       ${PROFILE_COLUMNS},
@@ -47,7 +47,7 @@ export async function getCurrentUser(userId: string) {
 }
 
 export async function getProfiles(excludeIds: string[], filters?: FilterCriteria) {
-  let query = supabase
+  let query = supabase()
     .from("Profile")
     .select(`
       id, name, age, gender, location, photos, profession,
@@ -71,7 +71,7 @@ export async function getProfiles(excludeIds: string[], filters?: FilterCriteria
 }
 
 export async function getProfileById(id: string) {
-  const { data } = await supabase
+  const { data } = await supabase()
     .from("Profile")
     .select(`
       id, name, age, gender, location, photos, bio, about_me,
@@ -93,7 +93,7 @@ export async function getProfileById(id: string) {
 }
 
 export async function updateProfile(userId: string, data: Record<string, any>) {
-  const { data: updated } = await supabase
+  const { data: updated } = await supabase()
     .from("Profile")
     .update(data)
     .eq("id", userId)
@@ -104,7 +104,7 @@ export async function updateProfile(userId: string, data: Record<string, any>) {
 }
 
 export async function createProfile(userId: string, data: Record<string, any>) {
-  const { data: created } = await supabase
+  const { data: created } = await supabase()
     .from("Profile")
     .insert({ id: userId, ...data })
     .select()

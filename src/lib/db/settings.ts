@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer, getEarlyOfferLimits, getPremiumLimits } from "./feature-flags";
 
-const supabase = createAdminClient();
+function supabase() { return createAdminClient(); }
 
 export interface SettingsInput {
   message_permission?: "mutual" | "anyone";
@@ -21,7 +21,7 @@ export async function updateSettings(userId: string, settings: SettingsInput) {
   if (settings.notifications_enabled !== undefined) data.notifications_enabled = settings.notifications_enabled;
   if (settings.swipe_gesture_enabled !== undefined) data.swipe_gesture_enabled = settings.swipe_gesture_enabled;
 
-  const { data: updated } = await supabase
+  const { data: updated } = await supabase()
     .from("Profile")
     .update(data)
     .eq("id", userId)
@@ -50,7 +50,7 @@ async function getTierLimits(): Promise<Record<string, { maxLikes: number; maxMe
 }
 
 export async function checkDailyLimits(userId: string) {
-  const { data: profile } = await supabase
+  const { data: profile } = await supabase()
     .from("Profile")
     .select("tier, daily_likes_used, daily_messages_used, last_reset_date")
     .eq("id", userId)
@@ -66,7 +66,7 @@ export async function checkDailyLimits(userId: string) {
     lastReset.getFullYear() !== today.getFullYear();
 
   if (isNewDay) {
-    await supabase
+    await supabase()
       .from("Profile")
       .update({
         daily_likes_used: 0,

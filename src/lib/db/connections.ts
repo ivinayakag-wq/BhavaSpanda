@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer, getEarlyOfferLimits, getPremiumLimits } from "./feature-flags";
 
-const supabase = createAdminClient();
+function supabase() { return createAdminClient(); }
 
 export interface LikeResult {
   liked: boolean;
@@ -28,7 +28,7 @@ async function getTierLimits(): Promise<Record<string, { maxLikes: number; canNo
 }
 
 async function checkAndResetDaily(userId: string) {
-  const { data: profile } = await supabase
+  const { data: profile } = await supabase()
     .from("Profile")
     .select("tier, daily_likes_used, last_reset_date")
     .eq("id", userId)
@@ -62,7 +62,7 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
     return { liked: false, matched: false, blocked: true };
   }
 
-  const { data: existing } = await supabase
+  const { data: existing } = await supabase()
     .from("Connection")
     .select("id, status")
     .eq("from_user_id", fromUserId)
@@ -73,7 +73,7 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
     return { liked: false, matched: false, blocked: false };
   }
 
-  await supabase.from("Connection").insert({
+  await supabase().from("Connection").insert({
     from_user_id: fromUserId,
     to_user_id: toUserId,
     status: "pending",
@@ -81,7 +81,7 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
 
   let matched = false;
 
-  const { data: reverseConnection } = await supabase
+  const { data: reverseConnection } = await supabase()
     .from("Connection")
     .select("id, status")
     .eq("from_user_id", toUserId)
@@ -91,12 +91,12 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
   if (reverseConnection && reverseConnection.status === "pending") {
     matched = true;
 
-    await supabase
+    await supabase()
       .from("Connection")
       .update({ status: "accepted" })
       .eq("id", reverseConnection.id);
 
-    const { data: forwardConn } = await supabase
+    const { data: forwardConn } = await supabase()
       .from("Connection")
       .select("id")
       .eq("from_user_id", fromUserId)
@@ -104,23 +104,23 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
       .single();
 
     if (forwardConn) {
-      await supabase
+      await supabase()
         .from("Connection")
         .update({ status: "accepted" })
         .eq("id", forwardConn.id);
     }
 
-    await supabase.from("Match").insert({
+    await supabase().from("Match").insert({
       user1_id: fromUserId,
       user2_id: toUserId,
     });
 
     const [{ data: fromProfile }, { data: toProfile }] = await Promise.all([
-      supabase.from("Profile").select("name").eq("id", fromUserId).single(),
-      supabase.from("Profile").select("name").eq("id", toUserId).single(),
+      supabase().from("Profile").select("name").eq("id", fromUserId).single(),
+      supabase().from("Profile").select("name").eq("id", toUserId).single(),
     ]);
 
-    await supabase.from("Notification").insert([
+    await supabase().from("Notification").insert([
       {
         user_id: fromUserId,
         type: "match",
@@ -137,13 +137,13 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
       },
     ]);
   } else if (reset.limits.canNotify) {
-    const { data: fromProfile } = await supabase
+    const { data: fromProfile } = await supabase()
       .from("Profile")
       .select("name")
       .eq("id", fromUserId)
       .single();
 
-    await supabase.from("Notification").insert({
+    await supabase().from("Notification").insert({
       user_id: toUserId,
       type: "like",
       title: "New Like",
@@ -153,7 +153,7 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
   }
 
   const newCount = reset.isNewDay ? 1 : reset.likesUsed + 1;
-  await supabase
+  await supabase()
     .from("Profile")
     .update({
       daily_likes_used: newCount,
@@ -167,7 +167,7 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
 export async function recordPass(fromUserId: string, toUserId: string): Promise<void> {
   if (fromUserId === toUserId) return;
 
-  const { data: existing } = await supabase
+  const { data: existing } = await supabase()
     .from("Connection")
     .select("id, status")
     .eq("from_user_id", fromUserId)
@@ -176,7 +176,7 @@ export async function recordPass(fromUserId: string, toUserId: string): Promise<
 
   if (existing) {
     if (existing.status === "pending") {
-      await supabase
+      await supabase()
         .from("Connection")
         .update({ status: "declined" })
         .eq("id", existing.id);
@@ -184,7 +184,7 @@ export async function recordPass(fromUserId: string, toUserId: string): Promise<
     return;
   }
 
-  await supabase.from("Connection").insert({
+  await supabase().from("Connection").insert({
     from_user_id: fromUserId,
     to_user_id: toUserId,
     status: "declined",
@@ -195,18 +195,18 @@ export async function getExcludedIds(userId: string): Promise<string[]> {
   const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
 
   const [{ data: liked }, { data: passed }, { data: matches }] = await Promise.all([
-    supabase
+    supabase()
       .from("Connection")
       .select("to_user_id")
       .eq("from_user_id", userId)
       .eq("status", "pending"),
-    supabase
+    supabase()
       .from("Connection")
       .select("to_user_id")
       .eq("from_user_id", userId)
       .eq("status", "declined")
       .gt("created_at", threeDaysAgo),
-    supabase
+    supabase()
       .from("Match")
       .select("user1_id, user2_id")
       .or(`user1_id.eq.${userId},user2_id.eq.${userId}`),
@@ -222,7 +222,7 @@ export async function getExcludedIds(userId: string): Promise<string[]> {
 }
 
 export async function getLikesCount(userId: string): Promise<number> {
-  const { count } = await supabase
+  const { count } = await supabase()
     .from("Connection")
     .select("id", { count: "exact", head: true })
     .eq("to_user_id", userId)
@@ -232,7 +232,7 @@ export async function getLikesCount(userId: string): Promise<number> {
 }
 
 export async function getLikesList(userId: string) {
-  const { data: connections } = await supabase
+  const { data: connections } = await supabase()
     .from("Connection")
     .select(`
       id, created_at,

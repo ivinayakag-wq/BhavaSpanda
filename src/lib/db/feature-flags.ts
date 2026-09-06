@@ -1,6 +1,6 @@
 import { createAdminClient } from "@/lib/supabase-admin";
 
-const supabase = createAdminClient();
+function supabase() { return createAdminClient(); }
 
 interface CacheEntry {
   value: unknown;
@@ -29,7 +29,7 @@ export async function getFeatureFlag<T = unknown>(key: string, defaultValue: T):
   if (cached !== null) return cached;
 
   try {
-    const { data: flag } = await supabase
+    const { data: flag } = await supabase()
       .from("FeatureFlag")
       .select("value")
       .eq("key", key)
