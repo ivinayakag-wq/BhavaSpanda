@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import ProfilePageClient from "@/components/profile/ProfilePageClient";
 import { createClient } from "@/lib/supabase-server";
 
@@ -17,7 +17,13 @@ export default async function ProfilePage() {
     return <p className="p-6 text-sm text-muted">Sign in to view your profile.</p>;
   }
 
-  const profile = await prisma.profile.findUnique({ where: { id: authUser.id } });
+  const admin = createAdminClient();
+  const { data: profile } = await admin
+    .from("Profile")
+    .select("*")
+    .eq("id", authUser.id)
+    .single();
+
   if (!profile) return <p className="p-6 text-sm text-muted">No profile found.</p>;
 
   return <ProfilePageClient profile={profile as any} />;

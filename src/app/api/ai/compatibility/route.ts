@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { runCompletion } from "@/lib/groq";
 import { getSunSignCompatibility, getElement, getNature } from "@/lib/astrology/compatibility";
 import { requireUser } from "@/lib/auth";
@@ -26,10 +26,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "You can only view compatibility for yourself" }, { status: 403 });
     }
 
-    const [userA, userB] = await Promise.all([
-      prisma.profile.findUnique({ where: { id: user1_id } }),
-      prisma.profile.findUnique({ where: { id: user2_id } }),
+    const supabase = createAdminClient();
+    const [userAResult, userBResult] = await Promise.all([
+      supabase.from("Profile").select("*").eq("id", user1_id).single(),
+      supabase.from("Profile").select("*").eq("id", user2_id).single(),
     ]);
+    const userA = userAResult.data;
+    const userB = userBResult.data;
     if (!userA || !userB) {
       return NextResponse.json({ error: "One or both profiles not found" }, { status: 404 });
     }
@@ -69,10 +72,13 @@ Return ONLY valid JSON — no markdown, no backticks, no extra text:
   } catch {
     const { user1_id, user2_id } = await req.json().catch(() => ({}));
     if (user1_id && user2_id) {
-      const [userA, userB] = await Promise.all([
-        prisma.profile.findUnique({ where: { id: user1_id } }),
-        prisma.profile.findUnique({ where: { id: user2_id } }),
+      const supabase = createAdminClient();
+      const [userAResult, userBResult] = await Promise.all([
+        supabase.from("Profile").select("*").eq("id", user1_id).single(),
+        supabase.from("Profile").select("*").eq("id", user2_id).single(),
       ]);
+      const userA = userAResult.data;
+      const userB = userBResult.data;
       if (userA?.sun_sign && userB?.sun_sign) {
         const { score, description } = getSunSignCompatibility(userA.sun_sign, userB.sun_sign);
         return NextResponse.json({ exact_score: String(score), insight: description });

@@ -1,4 +1,6 @@
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
+
+const supabase = createAdminClient();
 
 interface CacheEntry {
   value: unknown;
@@ -6,7 +8,7 @@ interface CacheEntry {
 }
 
 const cache = new Map<string, CacheEntry>();
-const CACHE_TTL_MS = 60_000; // 60 seconds
+const CACHE_TTL_MS = 60_000;
 
 function getFromCache<T>(key: string): T | null {
   const entry = cache.get(key);
@@ -22,29 +24,24 @@ function setCache(key: string, value: unknown): void {
   cache.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS });
 }
 
-/**
- * Get a feature flag value by key. Uses in-memory cache (60s TTL).
- * Returns defaultValue if the flag doesn't exist or DB is unreachable.
- */
 export async function getFeatureFlag<T = unknown>(key: string, defaultValue: T): Promise<T> {
   const cached = getFromCache<T>(key);
   if (cached !== null) return cached;
 
   try {
-    const flag = await prisma.featureFlag.findUnique({
-      where: { key },
-      select: { value: true },
-    });
+    const { data: flag } = await supabase
+      .from("FeatureFlag")
+      .select("value")
+      .eq("key", key)
+      .single();
+
     const value = (flag?.value as T) ?? defaultValue;
     setCache(key, value);
     return value;
   } catch {
-    // DB may not have FeatureFlag table yet — fail gracefully
     return defaultValue;
   }
 }
-
-/** Convenience helpers */
 
 export async function isEarlyOffer(): Promise<boolean> {
   return getFeatureFlag<boolean>("early_offer", true);
@@ -66,7 +63,6 @@ export async function shouldShowDonate(): Promise<boolean> {
   return getFeatureFlag<boolean>("show_donate", true);
 }
 
-/** Clear cache (useful after admin updates flags) */
 export function clearFeatureFlagCache(): void {
   cache.clear();
 }

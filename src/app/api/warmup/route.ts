@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  await prisma.profile.count();
+  const supabase = createAdminClient();
+  await supabase.from("profile").select("id", { count: "exact", head: true });
   return NextResponse.json({ ok: true });
 }

@@ -1,6 +1,7 @@
-import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer, getEarlyOfferLimits, getPremiumLimits } from "./feature-flags";
+
+const supabase = createAdminClient();
 
 async function getTierLimits(): Promise<Record<string, { maxMessages: number; canNotify: boolean }>> {
   const earlyOffer = await isEarlyOffer();
@@ -21,23 +22,24 @@ async function getTierLimits(): Promise<Record<string, { maxMessages: number; ca
 }
 
 export async function sendMessage(matchId: string, senderId: string, content: string) {
-  const match = await prisma.match.findUnique({
-    where: { id: matchId },
-    select: { user1_id: true, user2_id: true },
-  });
+  const { data: match } = await supabase
+    .from("Match")
+    .select("user1_id, user2_id")
+    .eq("id", matchId)
+    .single();
   if (!match) return { ok: false, message: null, blocked: true };
 
-  const receiverId =
-    match.user1_id === senderId ? match.user2_id : match.user1_id;
+  const receiverId = match.user1_id === senderId ? match.user2_id : match.user1_id;
 
-  const profile = await prisma.profile.findUnique({
-    where: { id: senderId },
-    select: { tier: true, daily_messages_used: true, last_reset_date: true },
-  });
+  const { data: profile } = await supabase
+    .from("Profile")
+    .select("tier, daily_messages_used, last_reset_date")
+    .eq("id", senderId)
+    .single();
   if (!profile) return { ok: false, message: null, blocked: true };
 
   const today = new Date();
-  const lastReset = profile.last_reset_date;
+  const lastReset = new Date(profile.last_reset_date);
   const isNewDay =
     lastReset.getDate() !== today.getDate() ||
     lastReset.getMonth() !== today.getMonth() ||
@@ -51,32 +53,34 @@ export async function sendMessage(matchId: string, senderId: string, content: st
     return { ok: false, message: null, blocked: true };
   }
 
-  const message = await prisma.message.create({
-    data: { match_id: matchId, sender_id: senderId, content: content.trim() },
-  });
+  const { data: message } = await supabase
+    .from("Message")
+    .insert({ match_id: matchId, sender_id: senderId, content: content.trim() })
+    .select()
+    .single();
 
-  await prisma.profile.update({
-    where: { id: senderId },
-    data: {
-      daily_messages_used: isNewDay ? 1 : { increment: 1 },
-      last_reset_date: new Date(),
-    },
-  });
+  const newCount = isNewDay ? 1 : msgsUsed + 1;
+  await supabase
+    .from("Profile")
+    .update({
+      daily_messages_used: newCount,
+      last_reset_date: new Date().toISOString(),
+    })
+    .eq("id", senderId);
 
   if (limits.canNotify) {
-    const senderProfile = await prisma.profile.findUnique({
-      where: { id: senderId },
-      select: { name: true },
-    });
+    const { data: senderProfile } = await supabase
+      .from("Profile")
+      .select("name")
+      .eq("id", senderId)
+      .single();
 
-    await prisma.notification.create({
-      data: {
-        user_id: receiverId,
-        type: "message",
-        title: "New Message",
-        body: `${senderProfile?.name ?? "Someone"}: ${content.trim().slice(0, 80)}`,
-        data: { matchId, senderId },
-      },
+    await supabase.from("Notification").insert({
+      user_id: receiverId,
+      type: "message",
+      title: "New Message",
+      body: `${senderProfile?.name ?? "Someone"}: ${content.trim().slice(0, 80)}`,
+      data: { matchId, senderId },
     });
   }
 
@@ -84,49 +88,49 @@ export async function sendMessage(matchId: string, senderId: string, content: st
 }
 
 export async function getMessages(matchId: string) {
-  return prisma.message.findMany({
-    where: { match_id: matchId },
-    orderBy: { created_at: "asc" },
-  });
+  const { data } = await supabase
+    .from("Message")
+    .select("*")
+    .eq("match_id", matchId)
+    .order("created_at", { ascending: true });
+
+  return data ?? [];
 }
 
 export async function getMatches(userId: string) {
-  const matches = await prisma.match.findMany({
-    where: {
-      OR: [{ user1_id: userId }, { user2_id: userId }],
-    },
-    include: {
-      messages: { take: 1, orderBy: { created_at: "desc" } },
-    },
-  });
+  const { data: matches } = await supabase
+    .from("Match")
+    .select(`
+      id, created_at, user1_id, user2_id,
+      messages:Message(id, content, created_at, sender_id)
+    `)
+    .or(`user1_id.eq.${userId},user2_id.eq.${userId}`);
 
-  const otherIds = matches.map((m) =>
+  if (!matches || matches.length === 0) return [];
+
+  const otherIds = matches.map((m: any) =>
     m.user1_id === userId ? m.user2_id : m.user1_id,
   );
 
-  const profiles = await prisma.profile.findMany({
-    where: { id: { in: otherIds } },
-    select: {
-      id: true,
-      name: true,
-      age: true,
-      location: true,
-      photos: true,
-      ai_archetype: true,
-      tier: true,
-    },
-  });
+  const { data: profiles } = await supabase
+    .from("Profile")
+    .select("id, name, age, location, photos, ai_archetype, tier")
+    .in("id", otherIds);
 
-  const profileMap = new Map(profiles.map((p) => [p.id, p]));
+  const profileMap = new Map((profiles ?? []).map((p: any) => [p.id, p]));
 
   return matches
-    .map((m) => {
+    .map((m: any) => {
       const otherId = m.user1_id === userId ? m.user2_id : m.user1_id;
       const other = profileMap.get(otherId);
-      const lastMsg = m.messages[0] ?? null;
+      const msgs = (m.messages ?? []).sort(
+        (a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      );
+      const lastMsg = msgs[0] ?? null;
+
       return {
         id: m.id,
-        created_at: m.created_at,
+        created_at: new Date(m.created_at),
         other_id: otherId,
         other_name: other?.name ?? null,
         other_age: other?.age ?? null,

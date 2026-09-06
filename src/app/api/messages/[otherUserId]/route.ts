@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { requireUser } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
@@ -19,37 +19,37 @@ export async function GET(
   const { otherUserId } = await params;
   const pollOnly = req.nextUrl.searchParams.get("poll") === "true";
 
-  const match = await prisma.match.findFirst({
-    where: {
-      OR: [
-        { user1_id: userId, user2_id: otherUserId },
-        { user1_id: otherUserId, user2_id: userId },
-      ],
-    },
-  });
+  const supabase = createAdminClient();
+
+  const { data: match } = await supabase
+    .from("match")
+    .select("*")
+    .or(`and(user1_id.eq.${userId},user2_id.eq.${otherUserId}),and(user1_id.eq.${otherUserId},user2_id.eq.${userId})`)
+    .maybeSingle();
 
   if (!match) {
     return NextResponse.json({ messages: [], otherProfile: null, viewerTier: "free", viewerId: userId });
   }
 
-  const messages = await prisma.message.findMany({
-    where: { match_id: match.id },
-    orderBy: { created_at: "asc" },
-  });
+  const { data: messages } = await supabase
+    .from("message")
+    .select("*")
+    .eq("match_id", match.id)
+    .order("created_at", { ascending: true });
 
   if (pollOnly) {
-    return NextResponse.json({ messages, viewerId: userId });
+    return NextResponse.json({ messages: messages ?? [], viewerId: userId });
   }
 
-  const [otherProfile, myProfile] = await Promise.all([
-    prisma.profile.findUnique({ where: { id: otherUserId } }),
-    prisma.profile.findUnique({ where: { id: userId } }),
+  const [otherProfileRes, myProfileRes] = await Promise.all([
+    supabase.from("profile").select("*").eq("id", otherUserId).maybeSingle(),
+    supabase.from("profile").select("tier").eq("id", userId).maybeSingle(),
   ]);
 
   return NextResponse.json({
-    messages,
-    otherProfile,
-    viewerTier: myProfile?.tier ?? "free",
+    messages: messages ?? [],
+    otherProfile: otherProfileRes.data,
+    viewerTier: myProfileRes.data?.tier ?? "free",
     viewerId: userId,
   });
 }

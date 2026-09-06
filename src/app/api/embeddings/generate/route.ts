@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { buildEmbeddingText, generateEmbedding } from "@/lib/embeddings/generate";
 import { requireUser } from "@/lib/auth";
 
@@ -13,7 +13,13 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const profile = await prisma.profile.findUnique({ where: { id: profileId } });
+    const supabase = createAdminClient();
+
+    const { data: profile } = await supabase
+      .from("Profile")
+      .select("*")
+      .eq("id", profileId)
+      .single();
 
     if (!profile) {
       return NextResponse.json({ error: "Profile not found" }, { status: 404 });
@@ -32,23 +38,10 @@ export async function POST(req: NextRequest) {
 
     const vecStr = `[${embedding.join(",")}]`;
 
-    const existing = await prisma.profileEmbedding.findUnique({
-      where: { profile_id: profileId },
-    });
-
-    if (existing) {
-      await prisma.$queryRawUnsafe(
-        `UPDATE "ProfileEmbedding" SET embedding = $1::vector, updated_at = NOW() WHERE profile_id = $2`,
-        vecStr,
-        profileId
-      );
-    } else {
-      await prisma.$queryRawUnsafe(
-        `INSERT INTO "ProfileEmbedding" (id, profile_id, embedding, updated_at) VALUES (gen_random_uuid()::text, $1, $2::vector, NOW())`,
-        profileId,
-        vecStr
-      );
-    }
+    await supabase.from("ProfileEmbedding").upsert(
+      { profile_id: profileId, embedding: vecStr },
+      { onConflict: "profile_id" }
+    );
 
     return NextResponse.json({ success: true, dimensions: embedding.length });
   } catch (err: any) {

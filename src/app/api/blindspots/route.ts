@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { getGroqClient } from "@/lib/groq";
 import { requireUser } from "@/lib/auth";
 
@@ -85,7 +85,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const profile = await prisma.profile.findUnique({ where: { id: profileId } });
+    const supabase = createAdminClient();
+    const { data: profile } = await supabase
+      .from("Profile")
+      .select("*")
+      .eq("id", profileId)
+      .single();
 
     if (!profile) {
       return NextResponse.json({ error: "Profile not found" }, { status: 404 });
@@ -96,7 +101,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Check for existing insight (permanent, not 24h)
-    const existing = await prisma.blindspotAnalysis.findUnique({ where: { profileId } }).catch(() => null);
+    const existing = await supabase
+      .from("BlindspotAnalysis")
+      .select("*")
+      .eq("profileId", profileId)
+      .single()
+      .then(({ data }) => data)
+      .catch(() => null);
     if (existing) {
       return NextResponse.json(existing.analysis as any);
     }
@@ -156,11 +167,14 @@ Generate 2-3 blindspots as JSON:
     }
 
     // Store permanently
-    await prisma.blindspotAnalysis.upsert({
-      where: { profileId },
-      update: { analysis: analysis as any, generatedAt: new Date() },
-      create: { profileId, analysis: analysis as any },
-    }).catch((e: any) => console.warn("Could not persist blindspot (table may not exist):", e.message));
+    await supabase
+      .from("BlindspotAnalysis")
+      .upsert({
+        profileId,
+        analysis: analysis as any,
+        generatedAt: new Date().toISOString(),
+      })
+      .catch((e: any) => console.warn("Could not persist blindspot (table may not exist):", e.message));
 
     return NextResponse.json(analysis);
   } catch (err: any) {
@@ -179,7 +193,14 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const analysis = await prisma.blindspotAnalysis.findUnique({ where: { profileId } }).catch(() => null);
+    const supabase = createAdminClient();
+    const { data: analysis } = await supabase
+      .from("BlindspotAnalysis")
+      .select("*")
+      .eq("profileId", profileId)
+      .single()
+      .then(({ data }) => data)
+      .catch(() => null);
 
     if (!analysis) {
       return NextResponse.json({ blindspots: [], summary: "No analysis yet. Complete your profile to generate insights.", needsMoreData: true });

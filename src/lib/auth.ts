@@ -1,12 +1,13 @@
 import { createClient } from "@/lib/supabase-server";
-import { prisma } from "@/lib/prisma";
-import type { Profile } from "@prisma/client";
+import { createAdminClient } from "@/lib/supabase-admin";
+
+const supabase = createAdminClient();
 
 export type AuthUser = { id: string; email?: string };
 
 export async function requireUser(): Promise<AuthUser> {
-  const supabase = await createClient();
-  const { data: { user }, error } = await supabase.auth.getUser();
+  const supabaseClient = await createClient();
+  const { data: { user }, error } = await supabaseClient.auth.getUser();
 
   if (error || !user) {
     throw new Error("UNAUTHORIZED");
@@ -15,12 +16,14 @@ export async function requireUser(): Promise<AuthUser> {
   return { id: user.id, email: user.email };
 }
 
-export async function requireProfile(): Promise<Profile> {
+export async function requireProfile(): Promise<any> {
   const authUser = await requireUser();
 
-  const profile = await prisma.profile.findUnique({
-    where: { id: authUser.id },
-  });
+  const { data: profile } = await supabase
+    .from("Profile")
+    .select("*")
+    .eq("id", authUser.id)
+    .single();
 
   if (!profile) {
     throw new Error("PROFILE_NOT_FOUND");

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { requireUser } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
@@ -13,21 +13,20 @@ export async function POST(req: NextRequest) {
 
   const body: Record<string, unknown> = await req.json().catch(() => ({}));
 
-  await prisma.profile.update({
-    where: { id: userId },
-    data: {
-      name: body.full_name as string ?? undefined,
-      age: body.age as number ?? undefined,
-      location: body.location as string ?? undefined,
-      bio: body.bio as string ?? undefined,
-      diet: body.diet as string ?? undefined,
-      alcohol: body.alcohol as string ?? undefined,
-      smoking: body.smoking as string ?? undefined,
-      sun_sign: body.zodiac as string ?? undefined,
-      spiritual_practices: (body.spiritual_practices as string[]) ?? undefined,
-      profile_completeness: 100,
-    },
-  });
+  const supabase = createAdminClient();
+
+  const updateData: Record<string, unknown> = { profile_completeness: 100 };
+  if (body.full_name != null) updateData.name = body.full_name;
+  if (body.age != null) updateData.age = body.age;
+  if (body.location != null) updateData.location = body.location;
+  if (body.bio != null) updateData.bio = body.bio;
+  if (body.diet != null) updateData.diet = body.diet;
+  if (body.alcohol != null) updateData.alcohol = body.alcohol;
+  if (body.smoking != null) updateData.smoking = body.smoking;
+  if (body.zodiac != null) updateData.sun_sign = body.zodiac;
+  if (body.spiritual_practices != null) updateData.spiritual_practices = body.spiritual_practices;
+
+  await supabase.from("profile").update(updateData).eq("id", userId);
 
   return NextResponse.json({ ok: true });
 }

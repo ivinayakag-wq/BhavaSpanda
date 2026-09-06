@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { getGroqClient } from "@/lib/groq";
 import { requireUser } from "@/lib/auth";
 
@@ -93,11 +93,13 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const profiles = await prisma.profile.findMany({
-      where: { id: { in: [profile1Id, profile2Id] } },
-    });
+    const supabase = createAdminClient();
+    const { data: profiles } = await supabase
+      .from("Profile")
+      .select("*")
+      .in("id", [profile1Id, profile2Id]);
 
-    if (profiles.length < 2) {
+    if (!profiles || profiles.length < 2) {
       return NextResponse.json({ insight: "Both profiles need to be visible to generate an insight." });
     }
 
@@ -106,7 +108,13 @@ export async function POST(req: NextRequest) {
 
     // Check for cached insight
     const cacheKey = [profile1Id, profile2Id].sort().join(":");
-    const existing = await prisma.matchInsight.findUnique({ where: { profilePair: cacheKey } }).catch(() => null);
+    const existing = await supabase
+      .from("MatchInsight")
+      .select("*")
+      .eq("profilePair", cacheKey)
+      .single()
+      .then(({ data }) => data)
+      .catch(() => null);
     if (existing) {
       return NextResponse.json({ insight: existing.insight });
     }
@@ -147,11 +155,10 @@ Write the insight:`;
     const insight = text || buildDataDrivenFallback(p1, p2);
 
     // Cache permanently
-    await prisma.matchInsight.upsert({
-      where: { profilePair: cacheKey },
-      update: { insight },
-      create: { profilePair: cacheKey, insight },
-    }).catch(() => {});
+    await supabase
+      .from("MatchInsight")
+      .upsert({ profilePair: cacheKey, insight })
+      .catch(() => {});
 
     return NextResponse.json({ insight });
   } catch {

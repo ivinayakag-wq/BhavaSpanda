@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { fetchKundali, fetchAshtakoot, parseBirthDetails } from "@/lib/astrology/api";
 import { getSunSignCompatibility } from "@/lib/astrology/compatibility";
 import { getGroqClient } from "@/lib/groq";
@@ -42,7 +42,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Both profile1Id and profile2Id required" }, { status: 400 });
   }
 
-  // Verify the requesting user is one of the two profiles
   if (userId !== profile1Id && userId !== profile2Id) {
     return NextResponse.json({ error: "You can only view compatibility for yourself" }, { status: 403 });
   }
@@ -50,18 +49,25 @@ export async function POST(req: NextRequest) {
   const cacheKey = [profile1Id, profile2Id].sort().join(":");
 
   try {
-    // ─── Layer 1: Check full pair cache ───
-    const cached = await prisma.pairCompatibility.findUnique({ where: { profilePair: cacheKey } }).catch(() => null);
+    const supabase = createAdminClient();
+
+    const { data: cached } = await supabase
+      .from("PairCompatibility")
+      .select("result")
+      .eq("profilePair", cacheKey)
+      .single()
+      .catch(() => ({ data: null }));
+
     if (cached) {
       return NextResponse.json(cached.result);
     }
 
-    // ─── Layer 2: Fetch profiles ───
-    const profiles = await prisma.profile.findMany({
-      where: { id: { in: [profile1Id, profile2Id] } },
-    });
+    const { data: profiles } = await supabase
+      .from("Profile")
+      .select("*")
+      .in("id", [profile1Id, profile2Id]);
 
-    if (profiles.length < 2) {
+    if (!profiles || profiles.length < 2) {
       return NextResponse.json({
         error: "One or both profiles not found",
         gunaScore: null,
@@ -87,13 +93,13 @@ export async function POST(req: NextRequest) {
     let kundali2Data: any = null;
 
     if (p1Birth && p2Birth) {
-      // ─── Layer 3: Check per-profile kundali cache ───
-      const [cached1, cached2] = await Promise.all([
-        prisma.astrologicalData.findUnique({ where: { profileId: p1.id } }).catch(() => null),
-        prisma.astrologicalData.findUnique({ where: { profileId: p2.id } }).catch(() => null),
+      const [cached1Result, cached2Result] = await Promise.all([
+        supabase.from("AstrologicalData").select("*").eq("profileId", p1.id).single().catch(() => ({ data: null })),
+        supabase.from("AstrologicalData").select("*").eq("profileId", p2.id).single().catch(() => ({ data: null })),
       ]);
+      const cached1 = cached1Result.data;
+      const cached2 = cached2Result.data;
 
-      // Only call Navamsha API for profiles without cached kundali
       let kundali1Promise: Promise<any> = Promise.resolve(cached1?.rawData ?? null);
       let kundali2Promise: Promise<any> = Promise.resolve(cached2?.rawData ?? null);
 
@@ -110,7 +116,6 @@ export async function POST(req: NextRequest) {
         });
       }
 
-      // Ashtakoot always needs fresh calculation (pair-specific)
       const ashtakootPromise = fetchAshtakoot(p1Birth, p2Birth).catch((err) => {
         console.error("Navamsha Ashtakoot API error:", err);
         return null;
@@ -122,26 +127,19 @@ export async function POST(req: NextRequest) {
         ashtakootPromise,
       ]);
 
-      // Process kundali results
       if (kundali1Raw && !cached1?.rawData) {
-        // Fresh kundali from API — process and cache
         kundali1Data = kundali1Raw;
         p1Astro = { sunSign: kundali1Data.sunSign, moonSign: kundali1Data.moonSign, nakshatra: kundali1Data.nakshatra, risingSign: kundali1Data.ascendant.sign };
 
-        // Save to per-profile cache
-        prisma.astrologicalData.upsert({
-          where: { profileId: p1.id },
-          update: { sunSign: kundali1Data.sunSign, moonSign: kundali1Data.moonSign, nakshatra: kundali1Data.nakshatra, risingSign: kundali1Data.ascendant.sign, rawData: kundali1Data.rawData },
-          create: { profileId: p1.id, sunSign: kundali1Data.sunSign, moonSign: kundali1Data.moonSign, nakshatra: kundali1Data.nakshatra, risingSign: kundali1Data.ascendant.sign, rawData: kundali1Data.rawData },
-        }).catch(() => {});
+        supabase.from("AstrologicalData").upsert(
+          { profileId: p1.id, sunSign: kundali1Data.sunSign, moonSign: kundali1Data.moonSign, nakshatra: kundali1Data.nakshatra, risingSign: kundali1Data.ascendant.sign, rawData: kundali1Data.rawData },
+          { onConflict: "profileId" }
+        ).catch(() => {});
 
-        // Also update profile signs
-        prisma.profile.update({
-          where: { id: p1.id },
-          data: { sun_sign: kundali1Data.sunSign, moon_sign: kundali1Data.moonSign, nakshatra: kundali1Data.nakshatra },
-        }).catch(() => {});
+        supabase.from("Profile").update(
+          { sun_sign: kundali1Data.sunSign, moon_sign: kundali1Data.moonSign, nakshatra: kundali1Data.nakshatra }
+        ).eq("id", p1.id).catch(() => {});
       } else if (cached1?.rawData) {
-        // Use cached kundali — reconstruct KundaliResult shape
         kundali1Data = {
           sunSign: cached1.sunSign || "",
           moonSign: cached1.moonSign || "",
@@ -157,16 +155,14 @@ export async function POST(req: NextRequest) {
         kundali2Data = kundali2Raw;
         p2Astro = { sunSign: kundali2Data.sunSign, moonSign: kundali2Data.moonSign, nakshatra: kundali2Data.nakshatra, risingSign: kundali2Data.ascendant.sign };
 
-        prisma.astrologicalData.upsert({
-          where: { profileId: p2.id },
-          update: { sunSign: kundali2Data.sunSign, moonSign: kundali2Data.moonSign, nakshatra: kundali2Data.nakshatra, risingSign: kundali2Data.ascendant.sign, rawData: kundali2Data.rawData },
-          create: { profileId: p2.id, sunSign: kundali2Data.sunSign, moonSign: kundali2Data.moonSign, nakshatra: kundali2Data.nakshatra, risingSign: kundali2Data.ascendant.sign, rawData: kundali2Data.rawData },
-        }).catch(() => {});
+        supabase.from("AstrologicalData").upsert(
+          { profileId: p2.id, sunSign: kundali2Data.sunSign, moonSign: kundali2Data.moonSign, nakshatra: kundali2Data.nakshatra, risingSign: kundali2Data.ascendant.sign, rawData: kundali2Data.rawData },
+          { onConflict: "profileId" }
+        ).catch(() => {});
 
-        prisma.profile.update({
-          where: { id: p2.id },
-          data: { sun_sign: kundali2Data.sunSign, moon_sign: kundali2Data.moonSign, nakshatra: kundali2Data.nakshatra },
-        }).catch(() => {});
+        supabase.from("Profile").update(
+          { sun_sign: kundali2Data.sunSign, moon_sign: kundali2Data.moonSign, nakshatra: kundali2Data.nakshatra }
+        ).eq("id", p2.id).catch(() => {});
       } else if (cached2?.rawData) {
         kundali2Data = {
           sunSign: cached2.sunSign || "",
@@ -202,7 +198,6 @@ export async function POST(req: NextRequest) {
       moonCompat = getSunSignCompatibility(p1Moon, p2Moon);
     }
 
-    // Generate psychological insight using STRUCTURED kundali data
     let psychologicalInsight = "Birth data needed for detailed psychological insight.";
 
     if (kundali1Data && kundali2Data) {
@@ -261,12 +256,10 @@ Interpret what this means for their relationship:`;
       psychologicalInsight,
     };
 
-    // ─── Save to pair cache ───
-    prisma.pairCompatibility.upsert({
-      where: { profilePair: cacheKey },
-      update: { result },
-      create: { profilePair: cacheKey, result },
-    }).catch(() => {});
+    supabase.from("PairCompatibility").upsert(
+      { profilePair: cacheKey, result },
+      { onConflict: "profilePair" }
+    ).catch(() => {});
 
     return NextResponse.json(result);
   } catch (err: any) {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { sendMessage } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
 
@@ -23,23 +23,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Cannot message yourself" }, { status: 400 });
   }
 
+  const supabase = createAdminClient();
+
   // Server-side profile completion check
-  const user = await prisma.profile.findUnique({
-    where: { id: userId },
-    select: { profile_completeness: true },
-  });
+  const { data: user } = await supabase
+    .from("profile")
+    .select("profile_completeness")
+    .eq("id", userId)
+    .single();
   if (!user || (user.profile_completeness ?? 0) < 100) {
     return NextResponse.json({ error: "profile_incomplete", blocked: true }, { status: 403 });
   }
 
-  const match = await prisma.match.findFirst({
-    where: {
-      OR: [
-        { user1_id: userId, user2_id: receiverId },
-        { user1_id: receiverId, user2_id: userId },
-      ],
-    },
-  });
+  const { data: match } = await supabase
+    .from("match")
+    .select("*")
+    .or(`and(user1_id.eq.${userId},user2_id.eq.${receiverId}),and(user1_id.eq.${receiverId},user2_id.eq.${userId})`)
+    .maybeSingle();
 
   if (!match) {
     return NextResponse.json({ error: "not matched" }, { status: 403 });

@@ -1,18 +1,13 @@
-import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer, getEarlyOfferLimits, getPremiumLimits } from "./feature-flags";
+
+const supabase = createAdminClient();
 
 export interface LikeResult {
   liked: boolean;
   matched: boolean;
   blocked: boolean;
 }
-
-const FALLBACK_TIER_LIMITS: Record<string, { maxLikes: number; canNotify: boolean }> = {
-  free: { maxLikes: 5, canNotify: false },
-  seeker: { maxLikes: 50, canNotify: true },
-  ultimate: { maxLikes: Infinity, canNotify: true },
-};
 
 async function getTierLimits(): Promise<Record<string, { maxLikes: number; canNotify: boolean }>> {
   const earlyOffer = await isEarlyOffer();
@@ -33,14 +28,16 @@ async function getTierLimits(): Promise<Record<string, { maxLikes: number; canNo
 }
 
 async function checkAndResetDaily(userId: string) {
-  const profile = await prisma.profile.findUnique({
-    where: { id: userId },
-    select: { tier: true, daily_likes_used: true, last_reset_date: true },
-  });
+  const { data: profile } = await supabase
+    .from("Profile")
+    .select("tier, daily_likes_used, last_reset_date")
+    .eq("id", userId)
+    .single();
+
   if (!profile) return null;
 
   const today = new Date();
-  const lastReset = profile.last_reset_date;
+  const lastReset = new Date(profile.last_reset_date);
   const isNewDay =
     lastReset.getDate() !== today.getDate() ||
     lastReset.getMonth() !== today.getMonth() ||
@@ -65,47 +62,65 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
     return { liked: false, matched: false, blocked: true };
   }
 
-  const existing = await prisma.connection.findUnique({
-    where: { from_user_id_to_user_id: { from_user_id: fromUserId, to_user_id: toUserId } },
-  });
+  const { data: existing } = await supabase
+    .from("Connection")
+    .select("id, status")
+    .eq("from_user_id", fromUserId)
+    .eq("to_user_id", toUserId)
+    .single();
 
   if (existing) {
     return { liked: false, matched: false, blocked: false };
   }
 
-  await prisma.connection.create({
-    data: { from_user_id: fromUserId, to_user_id: toUserId, status: "pending" },
+  await supabase.from("Connection").insert({
+    from_user_id: fromUserId,
+    to_user_id: toUserId,
+    status: "pending",
   });
 
   let matched = false;
 
-  const reverseConnection = await prisma.connection.findUnique({
-    where: { from_user_id_to_user_id: { from_user_id: toUserId, to_user_id: fromUserId } },
-  });
+  const { data: reverseConnection } = await supabase
+    .from("Connection")
+    .select("id, status")
+    .eq("from_user_id", toUserId)
+    .eq("to_user_id", fromUserId)
+    .single();
 
   if (reverseConnection && reverseConnection.status === "pending") {
     matched = true;
 
-    await prisma.$transaction([
-      prisma.connection.update({
-        where: { id: reverseConnection.id },
-        data: { status: "accepted" },
-      }),
-      prisma.connection.update({
-        where: { from_user_id_to_user_id: { from_user_id: fromUserId, to_user_id: toUserId } },
-        data: { status: "accepted" },
-      }),
-      prisma.match.create({
-        data: { user1_id: fromUserId, user2_id: toUserId },
-      }),
+    await supabase
+      .from("Connection")
+      .update({ status: "accepted" })
+      .eq("id", reverseConnection.id);
+
+    const { data: forwardConn } = await supabase
+      .from("Connection")
+      .select("id")
+      .eq("from_user_id", fromUserId)
+      .eq("to_user_id", toUserId)
+      .single();
+
+    if (forwardConn) {
+      await supabase
+        .from("Connection")
+        .update({ status: "accepted" })
+        .eq("id", forwardConn.id);
+    }
+
+    await supabase.from("Match").insert({
+      user1_id: fromUserId,
+      user2_id: toUserId,
+    });
+
+    const [{ data: fromProfile }, { data: toProfile }] = await Promise.all([
+      supabase.from("Profile").select("name").eq("id", fromUserId).single(),
+      supabase.from("Profile").select("name").eq("id", toUserId).single(),
     ]);
 
-    const [fromProfile, toProfile] = await Promise.all([
-      prisma.profile.findUnique({ where: { id: fromUserId }, select: { name: true } }),
-      prisma.profile.findUnique({ where: { id: toUserId }, select: { name: true } }),
-    ]);
-
-    const notifications: Prisma.NotificationCreateManyInput[] = [
+    await supabase.from("Notification").insert([
       {
         user_id: fromUserId,
         type: "match",
@@ -120,33 +135,31 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
         body: `You and ${fromProfile?.name ?? "someone"} have liked each other.`,
         data: { matchedUserId: fromUserId },
       },
-    ];
-
-    await prisma.notification.createMany({ data: notifications });
+    ]);
   } else if (reset.limits.canNotify) {
-    const fromProfile = await prisma.profile.findUnique({
-      where: { id: fromUserId },
-      select: { name: true },
-    });
+    const { data: fromProfile } = await supabase
+      .from("Profile")
+      .select("name")
+      .eq("id", fromUserId)
+      .single();
 
-    await prisma.notification.create({
-      data: {
-        user_id: toUserId,
-        type: "like",
-        title: "New Like",
-        body: `${fromProfile?.name ?? "Someone"} liked you.`,
-        data: { fromUserId },
-      },
+    await supabase.from("Notification").insert({
+      user_id: toUserId,
+      type: "like",
+      title: "New Like",
+      body: `${fromProfile?.name ?? "Someone"} liked you.`,
+      data: { fromUserId },
     });
   }
 
-  await prisma.profile.update({
-    where: { id: fromUserId },
-    data: {
-      daily_likes_used: reset.isNewDay ? 1 : { increment: 1 },
-      last_reset_date: new Date(),
-    },
-  });
+  const newCount = reset.isNewDay ? 1 : reset.likesUsed + 1;
+  await supabase
+    .from("Profile")
+    .update({
+      daily_likes_used: newCount,
+      last_reset_date: new Date().toISOString(),
+    })
+    .eq("id", fromUserId);
 
   return { liked: true, matched, blocked: false };
 }
@@ -154,98 +167,87 @@ export async function recordLike(fromUserId: string, toUserId: string): Promise<
 export async function recordPass(fromUserId: string, toUserId: string): Promise<void> {
   if (fromUserId === toUserId) return;
 
-  const existing = await prisma.connection.findUnique({
-    where: { from_user_id_to_user_id: { from_user_id: fromUserId, to_user_id: toUserId } },
-  });
+  const { data: existing } = await supabase
+    .from("Connection")
+    .select("id, status")
+    .eq("from_user_id", fromUserId)
+    .eq("to_user_id", toUserId)
+    .single();
 
   if (existing) {
     if (existing.status === "pending") {
-      await prisma.connection.update({
-        where: { id: existing.id },
-        data: { status: "declined" },
-      });
+      await supabase
+        .from("Connection")
+        .update({ status: "declined" })
+        .eq("id", existing.id);
     }
     return;
   }
 
-  await prisma.connection.create({
-    data: { from_user_id: fromUserId, to_user_id: toUserId, status: "declined" },
+  await supabase.from("Connection").insert({
+    from_user_id: fromUserId,
+    to_user_id: toUserId,
+    status: "declined",
   });
 }
 
 export async function getExcludedIds(userId: string): Promise<string[]> {
-  const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
+  const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
 
-  const [liked, passed, matches] = await Promise.all([
-    prisma.connection.findMany({
-      where: { from_user_id: userId, status: "pending" },
-      select: { to_user_id: true },
-    }),
-    prisma.connection.findMany({
-      where: {
-        from_user_id: userId,
-        status: "declined",
-        created_at: { gt: threeDaysAgo },
-      },
-      select: { to_user_id: true },
-    }),
-    prisma.match.findMany({
-      where: { OR: [{ user1_id: userId }, { user2_id: userId }] },
-      select: { user1_id: true, user2_id: true },
-    }),
+  const [{ data: liked }, { data: passed }, { data: matches }] = await Promise.all([
+    supabase
+      .from("Connection")
+      .select("to_user_id")
+      .eq("from_user_id", userId)
+      .eq("status", "pending"),
+    supabase
+      .from("Connection")
+      .select("to_user_id")
+      .eq("from_user_id", userId)
+      .eq("status", "declined")
+      .gt("created_at", threeDaysAgo),
+    supabase
+      .from("Match")
+      .select("user1_id, user2_id")
+      .or(`user1_id.eq.${userId},user2_id.eq.${userId}`),
   ]);
 
-  const likedIds = liked.map((c) => c.to_user_id);
-  const passedIds = passed.map((c) => c.to_user_id);
-  const matchIds = matches.flatMap((m) => [m.user1_id, m.user2_id]).filter((id) => id !== userId);
+  const likedIds = (liked ?? []).map((c: any) => c.to_user_id);
+  const passedIds = (passed ?? []).map((c: any) => c.to_user_id);
+  const matchIds = (matches ?? [])
+    .flatMap((m: any) => [m.user1_id, m.user2_id])
+    .filter((id: string) => id !== userId);
 
   return [...new Set([...likedIds, ...passedIds, ...matchIds])];
 }
 
 export async function getLikesCount(userId: string): Promise<number> {
-  return prisma.connection.count({
-    where: { to_user_id: userId, status: "pending" },
-  });
+  const { count } = await supabase
+    .from("Connection")
+    .select("id", { count: "exact", head: true })
+    .eq("to_user_id", userId)
+    .eq("status", "pending");
+
+  return count ?? 0;
 }
 
 export async function getLikesList(userId: string) {
-  const connections = await prisma.connection.findMany({
-    where: { to_user_id: userId, status: "pending" },
-    include: {
-      from_user: {
-        select: {
-          id: true,
-          name: true,
-          age: true,
-          gender: true,
-          location: true,
-          photos: true,
-          bio: true,
-          ai_archetype: true,
-          spiritual_community: true,
-          spiritual_practices: true,
-          practice_frequency: true,
-          profession: true,
-          diet: true,
-          alcohol: true,
-          smoking: true,
-          looking_for: true,
-          sun_sign: true,
-          moon_sign: true,
-          nakshatra: true,
-          gotra: true,
-          answers_to_questions: true,
-          profile_completeness: true,
-          tier: true,
-          contact_visibility: true,
-          phone_visible: true,
-          email_visible: true,
-          verification_status: true,
-        },
-      },
-    },
-    orderBy: { created_at: "desc" },
-  });
+  const { data: connections } = await supabase
+    .from("Connection")
+    .select(`
+      id, created_at,
+      from_user:Profile!Connection_from_user_id_fkey(
+        id, name, age, gender, location, photos, bio, ai_archetype,
+        spiritual_community, spiritual_practices, practice_frequency,
+        profession, diet, alcohol, smoking, looking_for,
+        sun_sign, moon_sign, nakshatra, gotra,
+        answers_to_questions, profile_completeness, tier,
+        contact_visibility, phone_visible, email_visible, verification_status
+      )
+    `)
+    .eq("to_user_id", userId)
+    .eq("status", "pending")
+    .order("created_at", { ascending: false });
 
-  return connections.map((c) => c.from_user);
+  return (connections ?? []).map((c: any) => c.from_user);
 }

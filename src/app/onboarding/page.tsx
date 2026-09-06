@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import OnboardingForm from "@/components/auth/OnboardingForm";
 import { createClient } from "@/lib/supabase-server";
 
@@ -14,7 +14,13 @@ export default async function OnboardingPage() {
 
   if (!authUser) redirect("/auth");
 
-  const profile = await prisma.profile.findUnique({ where: { id: authUser.id } });
+  const admin = createAdminClient();
+  const { data: profile } = await admin
+    .from("Profile")
+    .select("*")
+    .eq("id", authUser.id)
+    .single();
+
   if (!profile) redirect("/auth");
 
   return (

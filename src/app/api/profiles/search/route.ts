@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { requireUser } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
@@ -18,17 +18,16 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ results: [] });
   }
 
-  const profiles = await prisma.profile.findMany({
-    where: {
-      id: { not: userId },
-      name: { contains: q, mode: "insensitive" },
-    },
-    select: { id: true, name: true, ai_archetype: true },
-    take: 10,
-  });
+  const supabase = createAdminClient();
+  const { data: profiles } = await supabase
+    .from("profile")
+    .select("id, name, ai_archetype")
+    .neq("id", userId)
+    .ilike("name", `%${q}%`)
+    .limit(10);
 
   return NextResponse.json({
-    results: profiles.map((p) => ({
+    results: (profiles ?? []).map((p: any) => ({
       id: p.id,
       full_name: p.name,
       ai_archetype: p.ai_archetype,

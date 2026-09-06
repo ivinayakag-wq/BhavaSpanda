@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import ChatClient from "@/components/messages/ChatClient";
 import { createClient } from "@/lib/supabase-server";
 
@@ -23,27 +23,32 @@ export default async function ChatPage({
   }
 
   const viewerId = authUser.id;
+  const admin = createAdminClient();
 
-  const match = await prisma.match.findFirst({
-    where: {
-      OR: [
-        { user1_id: viewerId, user2_id: userId },
-        { user1_id: userId, user2_id: viewerId },
-      ],
-    },
-  });
+  const { data: match } = await admin
+    .from("Match")
+    .select("*")
+    .or(`user1_id.eq.${viewerId},user2_id.eq.${viewerId}`)
+    .or(`user1_id.eq.${userId},user2_id.eq.${userId}`)
+    .single();
 
-  const messages = match
-    ? await prisma.message.findMany({
-        where: { match_id: match.id },
-        orderBy: { created_at: "asc" },
-      })
-    : [];
+  let messages: any[] = [];
+  if (match) {
+    const { data } = await admin
+      .from("Message")
+      .select("*")
+      .eq("match_id", match.id)
+      .order("created_at", { ascending: true });
+    messages = data ?? [];
+  }
 
-  const [otherProfile, myProfile] = await Promise.all([
-    prisma.profile.findUnique({ where: { id: userId } }),
-    prisma.profile.findUnique({ where: { id: viewerId } }),
+  const [otherProfileResult, myProfileResult] = await Promise.all([
+    admin.from("Profile").select("*").eq("id", userId).single(),
+    admin.from("Profile").select("*").eq("id", viewerId).single(),
   ]);
+
+  const otherProfile = otherProfileResult.data;
+  const myProfile = myProfileResult.data;
 
   if (!otherProfile) {
     return (

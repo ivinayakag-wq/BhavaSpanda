@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { getGroqClient } from "@/lib/groq";
 import { requireUser } from "@/lib/auth";
 
@@ -81,11 +81,13 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const profiles = await prisma.profile.findMany({
-      where: { id: { in: [profile1Id, profile2Id] } },
-    });
+    const supabase = createAdminClient();
+    const { data: profiles } = await supabase
+      .from("Profile")
+      .select("*")
+      .in("id", [profile1Id, profile2Id]);
 
-    if (profiles.length < 2) {
+    if (!profiles || profiles.length < 2) {
       return NextResponse.json({ blindspots: [], strengths: [], summary: "Both profiles needed." });
     }
 
@@ -95,7 +97,13 @@ export async function POST(req: NextRequest) {
     const cacheKey = [profile1Id, profile2Id].sort().join(":");
 
     // Check for cached analysis (permanent)
-    const existing = await prisma.pairBlindspotAnalysis.findUnique({ where: { profilePair: cacheKey } }).catch(() => null);
+    const existing = await supabase
+      .from("PairBlindspotAnalysis")
+      .select("*")
+      .eq("profilePair", cacheKey)
+      .single()
+      .then(({ data }) => data)
+      .catch(() => null);
     if (existing) {
       return NextResponse.json(existing.analysis);
     }
@@ -164,11 +172,10 @@ Generate as JSON:
     }
 
     // Store permanently
-    await prisma.pairBlindspotAnalysis.upsert({
-      where: { profilePair: cacheKey },
-      update: { analysis: analysis as any },
-      create: { profilePair: cacheKey, analysis: analysis as any },
-    }).catch(() => {});
+    await supabase
+      .from("PairBlindspotAnalysis")
+      .upsert({ profilePair: cacheKey, analysis: analysis as any })
+      .catch(() => {});
 
     return NextResponse.json(analysis);
   } catch {

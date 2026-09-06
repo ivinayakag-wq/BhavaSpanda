@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { requireUser } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
@@ -17,15 +17,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ isMatch: false });
   }
 
-  const match = await prisma.match.findFirst({
-    where: {
-      OR: [
-        { user1_id: viewerId, user2_id: profileId },
-        { user1_id: profileId, user2_id: viewerId },
-      ],
-    },
-    select: { id: true },
-  }).catch(() => null);
+  const supabase = createAdminClient();
+  const { data: match } = await supabase
+    .from("match")
+    .select("id")
+    .or(`and(user1_id.eq.${viewerId},user2_id.eq.${profileId}),and(user1_id.eq.${profileId},user2_id.eq.${viewerId})`)
+    .maybeSingle();
 
   return NextResponse.json({ isMatch: !!match });
 }

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { requireUser } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
@@ -13,22 +13,21 @@ export async function GET() {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const matches = await prisma.match.findMany({
-    where: {
-      OR: [{ user1_id: userId }, { user2_id: userId }],
-    },
-    select: { id: true, user1_id: true, user2_id: true },
-  });
+  const supabase = createAdminClient();
 
-  const matchIds = matches.map((m) => m.id);
+  const { data: matches } = await supabase
+    .from("match")
+    .select("id, user1_id, user2_id")
+    .or(`user1_id.eq.${userId},user2_id.eq.${userId}`);
 
-  const count = await prisma.message.count({
-    where: {
-      match_id: { in: matchIds },
-      sender_id: { not: userId },
-      is_read: false,
-    },
-  });
+  const matchIds = (matches ?? []).map((m: any) => m.id);
 
-  return NextResponse.json({ count });
+  const { count } = await supabase
+    .from("message")
+    .select("id", { count: "exact", head: true })
+    .in("match_id", matchIds)
+    .neq("sender_id", userId)
+    .eq("is_read", false);
+
+  return NextResponse.json({ count: count ?? 0 });
 }

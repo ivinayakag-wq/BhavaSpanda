@@ -1,6 +1,7 @@
-import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer, getEarlyOfferLimits, getPremiumLimits } from "./feature-flags";
+
+const supabase = createAdminClient();
 
 export interface SettingsInput {
   message_permission?: "mutual" | "anyone";
@@ -12,7 +13,7 @@ export interface SettingsInput {
 }
 
 export async function updateSettings(userId: string, settings: SettingsInput) {
-  const data: Prisma.ProfileUpdateInput = {};
+  const data: Record<string, any> = {};
   if (settings.message_permission !== undefined) data.message_permission = settings.message_permission;
   if (settings.contact_visibility !== undefined) data.contact_visibility = settings.contact_visibility;
   if (settings.phone_visible !== undefined) data.phone_visible = settings.phone_visible;
@@ -20,25 +21,15 @@ export async function updateSettings(userId: string, settings: SettingsInput) {
   if (settings.notifications_enabled !== undefined) data.notifications_enabled = settings.notifications_enabled;
   if (settings.swipe_gesture_enabled !== undefined) data.swipe_gesture_enabled = settings.swipe_gesture_enabled;
 
-  return prisma.profile.update({
-    where: { id: userId },
-    data,
-    select: {
-      message_permission: true,
-      contact_visibility: true,
-      phone_visible: true,
-      email_visible: true,
-      notifications_enabled: true,
-      swipe_gesture_enabled: true,
-    },
-  });
-}
+  const { data: updated } = await supabase
+    .from("Profile")
+    .update(data)
+    .eq("id", userId)
+    .select("message_permission, contact_visibility, phone_visible, email_visible, notifications_enabled, swipe_gesture_enabled")
+    .single();
 
-const FALLBACK_TIER_LIMITS: Record<string, { maxLikes: number; maxMessages: number }> = {
-  free: { maxLikes: 5, maxMessages: 3 },
-  seeker: { maxLikes: 50, maxMessages: 10 },
-  ultimate: { maxLikes: Infinity, maxMessages: Infinity },
-};
+  return updated;
+}
 
 async function getTierLimits(): Promise<Record<string, { maxLikes: number; maxMessages: number }>> {
   const earlyOffer = await isEarlyOffer();
@@ -59,24 +50,30 @@ async function getTierLimits(): Promise<Record<string, { maxLikes: number; maxMe
 }
 
 export async function checkDailyLimits(userId: string) {
-  const profile = await prisma.profile.findUnique({
-    where: { id: userId },
-    select: { tier: true, daily_likes_used: true, daily_messages_used: true, last_reset_date: true },
-  });
+  const { data: profile } = await supabase
+    .from("Profile")
+    .select("tier, daily_likes_used, daily_messages_used, last_reset_date")
+    .eq("id", userId)
+    .single();
+
   if (!profile) return { likesRemaining: 0, messagesRemaining: 0, likesUsed: 0, messagesUsed: 0 };
 
   const today = new Date();
-  const lastReset = profile.last_reset_date;
+  const lastReset = new Date(profile.last_reset_date);
   const isNewDay =
     lastReset.getDate() !== today.getDate() ||
     lastReset.getMonth() !== today.getMonth() ||
     lastReset.getFullYear() !== today.getFullYear();
 
   if (isNewDay) {
-    await prisma.profile.update({
-      where: { id: userId },
-      data: { daily_likes_used: 0, daily_messages_used: 0, last_reset_date: today },
-    });
+    await supabase
+      .from("Profile")
+      .update({
+        daily_likes_used: 0,
+        daily_messages_used: 0,
+        last_reset_date: today.toISOString(),
+      })
+      .eq("id", userId);
 
     const tierLimits = await getTierLimits();
     const limits = tierLimits[profile.tier] ?? tierLimits.free;

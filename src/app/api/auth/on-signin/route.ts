@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createProfile } from "@/lib/db";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { requireUser } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
@@ -14,7 +14,13 @@ export async function POST(req: NextRequest) {
   const userId = authUser.id;
   const { phone, email } = await req.json().catch(() => ({}));
 
-  let profile = await prisma.profile.findUnique({ where: { id: userId } });
+  const supabase = createAdminClient();
+
+  let { data: profile } = await supabase
+    .from("profile")
+    .select("*")
+    .eq("id", userId)
+    .maybeSingle();
 
   if (!profile) {
     profile = await createProfile(userId, {

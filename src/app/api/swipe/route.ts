@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { recordLike, recordPass } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
 
@@ -18,10 +18,12 @@ export async function POST(req: NextRequest) {
   }
 
   // Server-side profile completion check
-  const user = await prisma.profile.findUnique({
-    where: { id: userId },
-    select: { profile_completeness: true },
-  });
+  const supabase = createAdminClient();
+  const { data: user } = await supabase
+    .from("profile")
+    .select("profile_completeness")
+    .eq("id", userId)
+    .single();
   if (!user || (user.profile_completeness ?? 0) < 100) {
     return NextResponse.json({ error: "profile_incomplete", blocked: true }, { status: 403 });
   }

@@ -1,46 +1,23 @@
-import { prisma } from "@/lib/prisma";
-import type { Prisma } from "@prisma/client";
+import { createAdminClient } from "@/lib/supabase-admin";
 
-const profileSelect = {
-  id: true,
-  name: true,
-  age: true,
-  gender: true,
-  location: true,
-  photos: true,
-  bio: true,
-  tier: true,
-  sun_sign: true,
-  moon_sign: true,
-  nakshatra: true,
-  gotra: true,
-  ai_archetype: true,
-  spiritual_community: true,
-  spiritual_practices: true,
-  profession: true,
-  diet: true,
-  alcohol: true,
-  smoking: true,
-  looking_for: true,
-  profile_completeness: true,
-  daily_likes_used: true,
-  daily_messages_used: true,
-  last_reset_date: true,
-  answers_to_questions: true,
-  contact_visibility: true,
-  phone_visible: true,
-  email_visible: true,
-  verification_status: true,
-  swipe_gesture_enabled: true,
-  created_at: true,
-} satisfies Prisma.ProfileSelect;
+const supabase = createAdminClient();
 
-export type ProfileData = Prisma.ProfileGetPayload<{
-  select: typeof profileSelect & {
-    profile_embedding: true;
-    subscriptions: { take: 1; orderBy: { created_at: "desc" } };
-  };
-}>;
+const PROFILE_COLUMNS = `
+  id, name, age, gender, location, photos, bio, tier,
+  sun_sign, moon_sign, nakshatra, gotra, ai_archetype,
+  spiritual_community, spiritual_community_other, spiritual_practices,
+  profession, diet, alcohol, smoking, looking_for,
+  profile_completeness, daily_likes_used, daily_messages_used,
+  last_reset_date, answers_to_questions, contact_visibility,
+  phone_visible, email_visible, verification_status,
+  swipe_gesture_enabled, created_at, about_me, non_negotiable,
+  primary_practice, practice_frequency, practice_hours, years_practicing,
+  favorite_space, guru_connection, spiritual_commitment, life_goals,
+  partner_age_min, partner_age_max, partner_location, partner_community,
+  partner_lifestyle, morning_person, exercise, education, income_range,
+  family_status, family_values, birth_date, birth_time, birth_location,
+  birth_timezone, spiritual_community_other, email
+`.trim();
 
 export interface FilterCriteria {
   gender?: string;
@@ -52,115 +29,86 @@ export interface FilterCriteria {
 }
 
 export async function getCurrentUser(userId: string) {
-  return prisma.profile.findUnique({
-    where: { id: userId },
-    select: {
-      ...profileSelect,
-      subscriptions: { take: 1, orderBy: { created_at: "desc" as const }, select: { status: true, created_at: true } },
-    },
-  });
+  const { data: profile } = await supabase
+    .from("Profile")
+    .select(`
+      ${PROFILE_COLUMNS},
+      subscriptions(status, created_at)
+    `)
+    .eq("id", userId)
+    .single();
+
+  if (!profile) return null;
+
+  const subs = (profile as any).subscriptions ?? [];
+  const sortedSubs = subs.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+  return { ...profile, subscriptions: sortedSubs.slice(0, 1) };
 }
 
 export async function getProfiles(excludeIds: string[], filters?: FilterCriteria) {
-  const where: Prisma.ProfileWhereInput = {
-    id: { notIn: excludeIds },
-  };
+  let query = supabase
+    .from("Profile")
+    .select(`
+      id, name, age, gender, location, photos, profession,
+      spiritual_community, spiritual_practices, sun_sign,
+      ai_archetype, looking_for, diet, verification_status
+    `)
+    .not("id", "in", `(${excludeIds.join(",")})`)
+    .limit(50);
 
   if (filters) {
-    if (filters.gender) where.gender = filters.gender as any;
-    if (filters.location) where.location = { contains: filters.location, mode: "insensitive" };
-    if (filters.community) where.spiritual_community = filters.community;
-    if (filters.diet) where.diet = filters.diet as any;
-    if (filters.ageMin !== undefined || filters.ageMax !== undefined) {
-      where.age = {};
-      if (filters.ageMin !== undefined) where.age.gte = filters.ageMin;
-      if (filters.ageMax !== undefined) where.age.lte = filters.ageMax;
-    }
+    if (filters.gender) query = query.eq("gender", filters.gender);
+    if (filters.location) query = query.ilike("location", `%${filters.location}%`);
+    if (filters.community) query = query.eq("spiritual_community", filters.community);
+    if (filters.diet) query = query.eq("diet", filters.diet);
+    if (filters.ageMin !== undefined) query = query.gte("age", filters.ageMin);
+    if (filters.ageMax !== undefined) query = query.lte("age", filters.ageMax);
   }
 
-  return prisma.profile.findMany({
-    where,
-    take: 50,
-    select: {
-      id: true,
-      name: true,
-      age: true,
-      gender: true,
-      location: true,
-      photos: true,
-      profession: true,
-      spiritual_community: true,
-      spiritual_practices: true,
-      sun_sign: true,
-      ai_archetype: true,
-      looking_for: true,
-      diet: true,
-      verification_status: true,
-    },
-  });
+  const { data } = await query;
+  return data ?? [];
 }
 
 export async function getProfileById(id: string) {
-  return prisma.profile.findUnique({
-    where: { id },
-    select: {
-      id: true,
-      name: true,
-      age: true,
-      gender: true,
-      location: true,
-      photos: true,
-      bio: true,
-      about_me: true,
-      profession: true,
-      education: true,
-      income_range: true,
-      spiritual_community: true,
-      spiritual_community_other: true,
-      spiritual_practices: true,
-      primary_practice: true,
-      practice_frequency: true,
-      practice_hours: true,
-      years_practicing: true,
-      favorite_space: true,
-      gotra: true,
-      guru_connection: true,
-      spiritual_commitment: true,
-      life_goals: true,
-      looking_for: true,
-      partner_age_min: true,
-      partner_age_max: true,
-      partner_location: true,
-      partner_community: true,
-      partner_lifestyle: true,
-      diet: true,
-      alcohol: true,
-      smoking: true,
-      morning_person: true,
-      exercise: true,
-      sun_sign: true,
-      moon_sign: true,
-      nakshatra: true,
-      ai_archetype: true,
-      non_negotiable: true,
-      verification_status: true,
-      answers_to_questions: true,
-      family_status: true,
-      family_values: true,
-      contact_visibility: true,
-    },
-  });
+  const { data } = await supabase
+    .from("Profile")
+    .select(`
+      id, name, age, gender, location, photos, bio, about_me,
+      profession, education, income_range,
+      spiritual_community, spiritual_community_other, spiritual_practices,
+      primary_practice, practice_frequency, practice_hours, years_practicing,
+      favorite_space, gotra, guru_connection, spiritual_commitment, life_goals,
+      looking_for, partner_age_min, partner_age_max, partner_location,
+      partner_community, partner_lifestyle,
+      diet, alcohol, smoking, morning_person, exercise,
+      sun_sign, moon_sign, nakshatra, ai_archetype, non_negotiable,
+      verification_status, answers_to_questions, family_status, family_values,
+      contact_visibility
+    `)
+    .eq("id", id)
+    .single();
+
+  return data;
 }
 
-export async function updateProfile(userId: string, data: Prisma.ProfileUpdateInput) {
-  return prisma.profile.update({
-    where: { id: userId },
-    data,
-  });
+export async function updateProfile(userId: string, data: Record<string, any>) {
+  const { data: updated } = await supabase
+    .from("Profile")
+    .update(data)
+    .eq("id", userId)
+    .select()
+    .single();
+
+  return updated;
 }
 
-export async function createProfile(userId: string, data: Prisma.ProfileCreateInput) {
-  return prisma.profile.create({
-    data: { id: userId, ...data },
-  });
+export async function createProfile(userId: string, data: Record<string, any>) {
+  const { data: created } = await supabase
+    .from("Profile")
+    .insert({ id: userId, ...data })
+    .select()
+    .single();
+
+  return created;
 }

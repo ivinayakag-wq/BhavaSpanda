@@ -1,11 +1,7 @@
-/**
- * Server-side Web Push notification module.
- * Early offer mode: all users get notifications.
- * Premium mode: Seeker/Ultimate users get notifications.
- */
-
-import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { isEarlyOffer } from "./db/feature-flags";
+
+const supabase = createAdminClient();
 
 export interface NotificationPayload {
   title: string;
@@ -15,10 +11,11 @@ export interface NotificationPayload {
 }
 
 async function getUserTier(userId: string): Promise<string> {
-  const profile = await prisma.profile.findUnique({
-    where: { id: userId },
-    select: { tier: true },
-  });
+  const { data: profile } = await supabase
+    .from("Profile")
+    .select("tier")
+    .eq("id", userId)
+    .single();
   return profile?.tier ?? "free";
 }
 
@@ -28,13 +25,11 @@ export async function sendNotification(
 ): Promise<void> {
   const [tier, earlyOffer] = await Promise.all([getUserTier(userId), isEarlyOffer()]);
 
-  // Early offer: all users get notifications
   if (earlyOffer) {
     console.log(`[NOTIFICATION] user:${userId} (${tier})`, payload);
     return;
   }
 
-  // Premium mode: only non-free users
   if (tier === "free") {
     return;
   }
