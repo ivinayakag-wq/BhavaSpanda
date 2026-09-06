@@ -46,7 +46,7 @@ export default function DashboardClient({ isGuest, profile, archetypeFromUrl }: 
     return (
       <div className="flex min-h-screen flex-col bg-background">
         <header className="flex items-center justify-between border-b px-6 py-4" style={{ borderColor: "#EBEBEB" }}>
-          <h1 className="font-name text-xl text-foreground">Isha Connect</h1>
+          <h1 className="font-name text-xl text-foreground">BhavaSpanda</h1>
           <button type="button" onClick={() => router.push("/auth")}
             className="rounded-full px-4 py-1.5 text-xs font-semibold text-white"
             style={{ background: "#EC4899" }}>
@@ -99,7 +99,7 @@ export default function DashboardClient({ isGuest, profile, archetypeFromUrl }: 
 
       {/* Top bar */}
       <header className="flex items-center justify-between border-b px-6 py-4" style={{ borderColor: "#EBEBEB" }}>
-        <h1 className="font-name text-xl text-foreground">Isha Connect</h1>
+        <h1 className="font-name text-xl text-foreground">BhavaSpanda</h1>
         <div className="flex items-center gap-3">
           <NotificationBell />
           <button

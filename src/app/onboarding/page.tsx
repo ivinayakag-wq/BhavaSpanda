@@ -5,7 +5,7 @@ import OnboardingForm from "@/components/auth/OnboardingForm";
 import { createClient } from "@/lib/supabase-server";
 
 export const metadata: Metadata = {
-  title: "Onboarding · Isha Connect",
+  title: "Onboarding · BhavaSpanda",
 };
 
 export default async function OnboardingPage() {

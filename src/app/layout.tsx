@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Isha Connect - Community for Spiritual Seekers",
+  title: "BhavaSpanda - Community for Spiritual Seekers",
   description:
     "Exclusive dating & community platform for Isha meditators. Find meaningful, life-long partnerships within the Isha community.",
   manifest: "/manifest.json",

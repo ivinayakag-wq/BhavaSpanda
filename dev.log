@@ -1,0 +1,1917 @@
+
+> karmic-swipe@0.1.0 dev
+> next dev --webpack --hostname 0.0.0.0
+
+▲ Next.js 16.2.12 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://0.0.0.0:3000
+- Environments: .env.local, .env
+✓ Ready in 858ms
+⚠ Attempted to load @next/swc-win32-x64-msvc, but an error occurred: \\?\D:\ishaconnect\karmic-swipe\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node is not a valid Win32 application.
+\\?\D:\ishaconnect\karmic-swipe\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node
+  Skipping creating a lockfile at D:\ishaconnect\karmic-swipe\.next\dev\lock because we're using WASM bindings
+
+○ Compiling /dashboard ...
+ GET /dashboard 200 in 12.4s (next.js: 12.0s, application-code: 382ms)
+ GET / 200 in 1117ms (next.js: 909ms, application-code: 209ms)
+ GET / 200 in 1766ms (next.js: 1272ms, application-code: 494ms)
+ GET /api/warmup 200 in 2.2s (next.js: 1319ms, application-code: 896ms)
+ GET /auth 200 in 733ms (next.js: 669ms, application-code: 64ms)
+ GET /dashboard 200 in 975ms (next.js: 936ms, application-code: 39ms)
+ GET /api/messages/unread-count 200 in 1138ms (next.js: 897ms, application-code: 240ms)
+ GET /api/messages/unread-count 200 in 160ms (next.js: 5ms, application-code: 155ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1913ms (next.js: 885ms, application-code: 1027ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1280ms (next.js: 3ms, application-code: 1277ms)
+ POST /api/swipe 500 in 939ms (next.js: 106ms, application-code: 833ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 2.8s (next.js: 768ms, application-code: 2.0s)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 589ms (next.js: 3ms, application-code: 585ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /messages 200 in 1571ms (next.js: 1510ms, application-code: 61ms)
+ GET /api/messages/conversations 200 in 1106ms (next.js: 456ms, application-code: 650ms)
+ GET /api/messages/conversations 200 in 408ms (next.js: 4ms, application-code: 404ms)
+ GET /api/messages/unread-count 200 in 828ms (next.js: 385ms, application-code: 442ms)
+ GET /api/messages/unread-count 200 in 165ms (next.js: 3ms, application-code: 162ms)
+ GET /likes 200 in 1048ms (next.js: 998ms, application-code: 49ms)
+ GET /api/likes 200 in 1213ms (next.js: 489ms, application-code: 724ms)
+ GET /api/messages/unread-count 200 in 430ms (next.js: 5ms, application-code: 424ms)
+ GET /api/messages/unread-count 200 in 159ms (next.js: 3ms, application-code: 156ms)
+ GET /api/likes 200 in 625ms (next.js: 5ms, application-code: 620ms)
+ GET /dashboard 200 in 84ms (next.js: 46ms, application-code: 38ms)
+ GET /api/messages/unread-count 200 in 319ms (next.js: 5ms, application-code: 315ms)
+ GET /api/messages/unread-count 200 in 1199ms (next.js: 1011ms, application-code: 188ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.5s (next.js: 1327ms, application-code: 1197ms)
+ GET /api/profiles/feed?userId=user-1 200 in 759ms (next.js: 2ms, application-code: 757ms)
+ POST /api/swipe 500 in 680ms (next.js: 8ms, application-code: 672ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /api/warmup 200 in 1311ms (next.js: 792ms, application-code: 518ms)
+ GET /dashboard 200 in 126ms (next.js: 61ms, application-code: 65ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.2s (next.js: 962ms, application-code: 1245ms)
+ GET /dashboard 200 in 182ms (next.js: 118ms, application-code: 65ms)
+ GET /api/messages/unread-count 200 in 1083ms (next.js: 864ms, application-code: 219ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1759ms (next.js: 853ms, application-code: 906ms)
+ GET /dashboard 200 in 103ms (next.js: 58ms, application-code: 45ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1406ms (next.js: 15ms, application-code: 1391ms)
+ GET /dashboard 200 in 340ms (next.js: 5ms, application-code: 336ms)
+ GET /api/warmup 200 in 1469ms (next.js: 1033ms, application-code: 437ms)
+ GET /api/messages/unread-count 200 in 1509ms (next.js: 994ms, application-code: 515ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.1s (next.js: 992ms, application-code: 1139ms)
+ GET / 200 in 236ms (next.js: 51ms, application-code: 186ms)
+ GET / 200 in 61ms (next.js: 2ms, application-code: 59ms)
+ GET /api/warmup 200 in 438ms (next.js: 3ms, application-code: 435ms)
+ GET /auth 200 in 717ms (next.js: 679ms, application-code: 38ms)
+ GET /dashboard 200 in 35ms (next.js: 10ms, application-code: 25ms)
+ GET /api/messages/unread-count 200 in 208ms (next.js: 19ms, application-code: 189ms)
+ GET /api/messages/unread-count 200 in 190ms (next.js: 10ms, application-code: 180ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1195ms (next.js: 7ms, application-code: 1188ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1212ms (next.js: 9ms, application-code: 1203ms)
+ GET /likes 200 in 53ms (next.js: 17ms, application-code: 36ms)
+ GET /api/likes 200 in 1682ms (next.js: 878ms, application-code: 805ms)
+ GET /api/likes 200 in 545ms (next.js: 2ms, application-code: 542ms)
+ GET /api/messages/unread-count 200 in 703ms (next.js: 515ms, application-code: 188ms)
+ GET /api/messages/unread-count 200 in 177ms (next.js: 7ms, application-code: 171ms)
+ GET /likes 200 in 145ms (next.js: 88ms, application-code: 56ms)
+ GET /likes 200 in 206ms (next.js: 153ms, application-code: 53ms)
+ GET /likes 200 in 178ms (next.js: 113ms, application-code: 65ms)
+ GET /dashboard 200 in 42ms (next.js: 14ms, application-code: 28ms)
+ GET /api/messages/unread-count 200 in 1973ms (next.js: 1340ms, application-code: 633ms)
+ GET /api/messages/unread-count 200 in 180ms (next.js: 4ms, application-code: 176ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.2s (next.js: 951ms, application-code: 1269ms)
+ GET /api/profiles/feed?userId=user-1 200 in 850ms (next.js: 5ms, application-code: 845ms)
+ POST /api/swipe 500 in 767ms (next.js: 419ms, application-code: 348ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 648ms (next.js: 2ms, application-code: 645ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+[browser] [@use-gesture]: The drag target has its `touch-action` style property set to `auto`. It is recommended to add `touch-action: 'none'` so that the drag gesture behaves correctly on touch-enabled devices. For more information read this: https://use-gesture.netlify.app/docs/extras/#touch-action.
+
+This message will only show in development mode. It won't appear in production. If this is intended, you can ignore it. [object HTMLDivElement]
+ POST /api/match-insight 200 in 3.3s (next.js: 2.9s, application-code: 369ms)
+ POST /api/astrology/compatibility 404 in 3.4s (next.js: 2.9s, application-code: 482ms)
+ POST /api/astrology/compatibility 404 in 3.4s (next.js: 2.9s, application-code: 547ms)
+ POST /api/match-insight 200 in 3.5s (next.js: 2.9s, application-code: 639ms)
+ GET /api/warmup 200 in 1215ms (next.js: 834ms, application-code: 381ms)
+ POST /api/swipe 500 in 684ms (next.js: 10ms, application-code: 674ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /messages 200 in 145ms (next.js: 66ms, application-code: 79ms)
+ GET /api/messages/conversations 200 in 1366ms (next.js: 706ms, application-code: 659ms)
+ GET /api/messages/conversations 200 in 312ms (next.js: 5ms, application-code: 307ms)
+ GET /api/messages/unread-count 200 in 652ms (next.js: 474ms, application-code: 177ms)
+ GET /api/messages/unread-count 200 in 177ms (next.js: 2ms, application-code: 175ms)
+ GET /likes 200 in 97ms (next.js: 54ms, application-code: 43ms)
+ GET /api/messages/unread-count 200 in 1556ms (next.js: 1110ms, application-code: 446ms)
+ GET /api/messages/unread-count 200 in 153ms (next.js: 6ms, application-code: 147ms)
+ GET /api/likes 200 in 1972ms (next.js: 1147ms, application-code: 824ms)
+ GET /api/likes 200 in 417ms (next.js: 5ms, application-code: 413ms)
+ GET / 200 in 278ms (next.js: 51ms, application-code: 228ms)
+ GET / 200 in 55ms (next.js: 2ms, application-code: 53ms)
+ GET /api/warmup 200 in 469ms (next.js: 6ms, application-code: 463ms)
+ GET /auth 200 in 758ms (next.js: 722ms, application-code: 36ms)
+ GET / 200 in 236ms (next.js: 22ms, application-code: 214ms)
+ GET / 200 in 90ms (next.js: 2ms, application-code: 88ms)
+ GET / 200 in 83ms (next.js: 3ms, application-code: 81ms)
+ GET / 200 in 88ms (next.js: 2ms, application-code: 86ms)
+ GET / 200 in 93ms (next.js: 3ms, application-code: 91ms)
+ GET / 200 in 114ms (next.js: 2ms, application-code: 112ms)
+ GET / 200 in 106ms (next.js: 3ms, application-code: 104ms)
+ GET / 200 in 95ms (next.js: 2ms, application-code: 93ms)
+ GET / 200 in 94ms (next.js: 3ms, application-code: 92ms)
+ GET / 200 in 103ms (next.js: 3ms, application-code: 100ms)
+ GET / 200 in 90ms (next.js: 3ms, application-code: 87ms)
+ GET / 200 in 90ms (next.js: 2ms, application-code: 88ms)
+ GET / 200 in 112ms (next.js: 5ms, application-code: 107ms)
+ GET / 200 in 92ms (next.js: 2ms, application-code: 89ms)
+ GET / 200 in 86ms (next.js: 2ms, application-code: 83ms)
+ GET / 200 in 115ms (next.js: 3ms, application-code: 112ms)
+ GET / 200 in 102ms (next.js: 4ms, application-code: 98ms)
+ GET / 200 in 99ms (next.js: 2ms, application-code: 97ms)
+ GET / 200 in 93ms (next.js: 3ms, application-code: 90ms)
+ GET / 200 in 82ms (next.js: 8ms, application-code: 74ms)
+ GET / 200 in 72ms (next.js: 2ms, application-code: 70ms)
+ GET /api/warmup 200 in 432ms (next.js: 11ms, application-code: 421ms)
+ GET /auth 200 in 29ms (next.js: 4ms, application-code: 25ms)
+ GET /dashboard 200 in 42ms (next.js: 16ms, application-code: 26ms)
+ GET /api/messages/unread-count 200 in 207ms (next.js: 10ms, application-code: 197ms)
+ GET /api/messages/unread-count 200 in 1128ms (next.js: 945ms, application-code: 183ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.1s (next.js: 1155ms, application-code: 987ms)
+ GET /api/profiles/feed?userId=user-1 200 in 907ms (next.js: 6ms, application-code: 901ms)
+ POST /api/swipe 500 in 812ms (next.js: 461ms, application-code: 351ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 419ms (next.js: 1990µs, application-code: 417ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /likes 200 in 103ms (next.js: 60ms, application-code: 43ms)
+ GET /api/likes 200 in 1435ms (next.js: 679ms, application-code: 755ms)
+ GET /api/messages/unread-count 200 in 506ms (next.js: 5ms, application-code: 501ms)
+ GET /api/likes 200 in 597ms (next.js: 5ms, application-code: 592ms)
+ GET /api/messages/unread-count 200 in 146ms (next.js: 6ms, application-code: 140ms)
+ GET /dashboard 200 in 79ms (next.js: 40ms, application-code: 39ms)
+ GET /api/messages/unread-count 200 in 622ms (next.js: 5ms, application-code: 617ms)
+ GET /api/messages/unread-count 200 in 211ms (next.js: 7ms, application-code: 203ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1237ms (next.js: 10ms, application-code: 1226ms)
+ GET /api/profiles/feed?userId=user-1 200 in 785ms (next.js: 1728µs, application-code: 783ms)
+ GET /dashboard 200 in 127ms (next.js: 61ms, application-code: 66ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1915ms (next.js: 594ms, application-code: 1320ms)
+ GET /dashboard 200 in 109ms (next.js: 57ms, application-code: 52ms)
+ GET /api/warmup 200 in 862ms (next.js: 517ms, application-code: 345ms)
+ GET /dashboard 200 in 97ms (next.js: 54ms, application-code: 43ms)
+ POST /api/swipe 500 in 1870ms (next.js: 1175ms, application-code: 696ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 627ms (next.js: 2ms, application-code: 625ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 1547ms (next.js: 3ms, application-code: 1543ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 610ms (next.js: 3ms, application-code: 607ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/swipe 500 in 1458ms (next.js: 3ms, application-code: 1455ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /likes 200 in 148ms (next.js: 61ms, application-code: 87ms)
+ GET /api/messages/unread-count 200 in 1716ms (next.js: 1229ms, application-code: 487ms)
+ GET /api/messages/unread-count 200 in 155ms (next.js: 4ms, application-code: 151ms)
+ GET /api/likes 200 in 2.0s (next.js: 1253ms, application-code: 781ms)
+ GET /api/likes 200 in 381ms (next.js: 7ms, application-code: 374ms)
+ GET /dashboard 200 in 106ms (next.js: 54ms, application-code: 52ms)
+ GET /api/messages/unread-count 200 in 926ms (next.js: 3ms, application-code: 922ms)
+ GET /api/messages/unread-count 200 in 753ms (next.js: 570ms, application-code: 183ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.5s (next.js: 1372ms, application-code: 1169ms)
+ GET /api/profiles/feed?userId=user-1 200 in 600ms (next.js: 1933µs, application-code: 598ms)
+ POST /api/swipe 500 in 843ms (next.js: 446ms, application-code: 397ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /api/warmup 200 in 978ms (next.js: 633ms, application-code: 345ms)
+ GET /dashboard 200 in 126ms (next.js: 67ms, application-code: 60ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1668ms (next.js: 608ms, application-code: 1060ms)
+ GET /dashboard 200 in 101ms (next.js: 58ms, application-code: 42ms)
+ GET /api/profiles/feed?userId=user-1 200 in 855ms (next.js: 15ms, application-code: 840ms)
+ GET /dashboard 200 in 98ms (next.js: 57ms, application-code: 41ms)
+ GET /dashboard 200 in 100ms (next.js: 55ms, application-code: 45ms)
+ GET /dashboard 200 in 104ms (next.js: 55ms, application-code: 50ms)
+ GET /dashboard 200 in 98ms (next.js: 53ms, application-code: 45ms)
+ GET /dashboard 200 in 83ms (next.js: 36ms, application-code: 47ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.4s (next.js: 1102ms, application-code: 1321ms)
+ GET /dashboard 200 in 40ms (next.js: 2ms, application-code: 37ms)
+ GET /dashboard 200 in 73ms (next.js: 33ms, application-code: 40ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.1s (next.js: 781ms, application-code: 1315ms)
+ GET /likes 200 in 299ms (next.js: 35ms, application-code: 265ms)
+ GET /likes 200 in 64ms (next.js: 9ms, application-code: 55ms)
+ GET /likes 200 in 67ms (next.js: 10ms, application-code: 56ms)
+ GET /dashboard 200 in 218ms (next.js: 164ms, application-code: 54ms)
+ GET /api/warmup 200 in 1387ms (next.js: 922ms, application-code: 465ms)
+ POST /api/swipe 500 in 1050ms (next.js: 695ms, application-code: 355ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /likes 200 in 92ms (next.js: 50ms, application-code: 42ms)
+ GET /api/messages/unread-count 200 in 1677ms (next.js: 1180ms, application-code: 496ms)
+ GET /api/messages/unread-count 200 in 163ms (next.js: 3ms, application-code: 160ms)
+ GET /api/likes 200 in 2.1s (next.js: 1234ms, application-code: 849ms)
+ GET /api/likes 200 in 193ms (next.js: 3ms, application-code: 189ms)
+ GET /likes 200 in 1197ms (next.js: 1101ms, application-code: 97ms)
+ GET /api/likes 200 in 1703ms (next.js: 941ms, application-code: 762ms)
+ GET /likes 200 in 429ms (next.js: 71ms, application-code: 358ms)
+ GET /likes 200 in 80ms (next.js: 9ms, application-code: 71ms)
+ GET /dashboard 200 in 54ms (next.js: 14ms, application-code: 40ms)
+ GET /api/messages/unread-count 200 in 2.3s (next.js: 1707ms, application-code: 635ms)
+ GET /api/messages/unread-count 200 in 215ms (next.js: 1955µs, application-code: 214ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.7s (next.js: 1470ms, application-code: 1194ms)
+ GET /api/profiles/feed?userId=user-1 200 in 658ms (next.js: 1877µs, application-code: 656ms)
+ POST /api/swipe 500 in 1095ms (next.js: 751ms, application-code: 345ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /api/warmup 200 in 1161ms (next.js: 706ms, application-code: 455ms)
+ POST /api/swipe 500 in 702ms (next.js: 10ms, application-code: 691ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ GET /messages 200 in 94ms (next.js: 48ms, application-code: 45ms)
+ GET /api/messages/conversations 200 in 1254ms (next.js: 761ms, application-code: 493ms)
+ GET /api/messages/conversations 200 in 237ms (next.js: 4ms, application-code: 233ms)
+ GET /api/messages/unread-count 200 in 514ms (next.js: 5ms, application-code: 509ms)
+ GET /api/messages/unread-count 200 in 194ms (next.js: 5ms, application-code: 190ms)
+ GET /likes 200 in 59ms (next.js: 30ms, application-code: 29ms)
+ GET /api/messages/unread-count 200 in 1473ms (next.js: 975ms, application-code: 498ms)
+ GET /api/messages/unread-count 200 in 149ms (next.js: 2ms, application-code: 147ms)
+ GET /api/likes 200 in 1878ms (next.js: 1004ms, application-code: 873ms)
+ GET /api/likes 200 in 394ms (next.js: 3ms, application-code: 390ms)
+ GET /profile 200 in 2.4s (next.js: 1923ms, application-code: 492ms)
+ GET /api/messages/unread-count 200 in 182ms (next.js: 12ms, application-code: 170ms)
+ GET /api/messages/unread-count 200 in 178ms (next.js: 3ms, application-code: 175ms)
+ GET /likes 200 in 38ms (next.js: 12ms, application-code: 25ms)
+ GET /api/messages/unread-count 200 in 182ms (next.js: 3ms, application-code: 180ms)
+ GET /api/likes 200 in 329ms (next.js: 10ms, application-code: 319ms)
+ GET /api/messages/unread-count 200 in 204ms (next.js: 3ms, application-code: 201ms)
+ GET /api/likes 200 in 397ms (next.js: 1980µs, application-code: 395ms)
+ GET /likes 200 in 212ms (next.js: 157ms, application-code: 55ms)
+ GET /likes 200 in 281ms (next.js: 183ms, application-code: 97ms)
+ GET /profile 200 in 1769ms (next.js: 1112ms, application-code: 656ms)
+ GET /api/messages/unread-count 200 in 801ms (next.js: 613ms, application-code: 188ms)
+ GET /api/messages/unread-count 200 in 165ms (next.js: 4ms, application-code: 161ms)
+ GET /likes 200 in 88ms (next.js: 49ms, application-code: 38ms)
+ GET /api/messages/unread-count 200 in 1894ms (next.js: 1419ms, application-code: 475ms)
+ GET /messages 200 in 115ms (next.js: 51ms, application-code: 64ms)
+ GET /api/likes 200 in 2.3s (next.js: 1463ms, application-code: 790ms)
+ GET /api/messages/unread-count 200 in 210ms (next.js: 4ms, application-code: 206ms)
+ GET /api/messages/unread-count 200 in 1245ms (next.js: 1063ms, application-code: 182ms)
+ GET /api/messages/unread-count 200 in 215ms (next.js: 2ms, application-code: 213ms)
+ GET /dashboard 200 in 67ms (next.js: 33ms, application-code: 34ms)
+ GET /api/messages/conversations 200 in 1790ms (next.js: 1270ms, application-code: 521ms)
+ GET /api/messages/unread-count 200 in 304ms (next.js: 2ms, application-code: 302ms)
+ GET /api/likes 200 in 1805ms (next.js: 1065ms, application-code: 741ms)
+ GET /api/messages/unread-count 200 in 1180ms (next.js: 997ms, application-code: 183ms)
+ GET /api/messages/conversations 200 in 1723ms (next.js: 1438ms, application-code: 285ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.6s (next.js: 1533ms, application-code: 1057ms)
+ GET /api/profiles/feed?userId=user-1 200 in 1031ms (next.js: 3ms, application-code: 1027ms)
+ POST /api/astrology/compatibility 404 in 1467ms (next.js: 1076ms, application-code: 391ms)
+ POST /api/match-insight 200 in 2.0s (next.js: 1616ms, application-code: 395ms)
+ POST /api/match-insight 200 in 1607ms (next.js: 1077ms, application-code: 531ms)
+ POST /api/astrology/compatibility 404 in 1664ms (next.js: 1079ms, application-code: 585ms)
+ GET /api/warmup 200 in 1107ms (next.js: 695ms, application-code: 412ms)
+⨯ ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx
+⨯ ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx
+○ Compiling /api/warmup ...
+⨯ ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx
+ GET /api/warmup 500 in 10.5s (next.js: 10.2s, application-code: 202ms)
+ GET /dashboard 500 in 1550ms (next.js: 1539ms, application-code: 11ms)
+ GET /dashboard 500 in 13ms (next.js: 4ms, application-code: 9ms)
+⨯ ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx
+ GET /dashboard 200 in 117ms (next.js: 59ms, application-code: 57ms)
+ POST /api/astrology/compatibility 404 in 1845ms (next.js: 1375ms, application-code: 469ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.1s (next.js: 1374ms, application-code: 735ms)
+ POST /api/match-insight 200 in 2.3s (next.js: 1392ms, application-code: 864ms)
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+[browser] ./src/components/modals/ProfileDetailModal.tsx
+Error:   x Expected '</', got 'jsx text'
+     ,-[D:\ishaconnect\karmic-swipe\src\components\modals\ProfileDetailModal.tsx:366:1]
+ 363 |                   <MessageCircle className="h-4 w-4" /> Message
+ 364 |                 </motion.button>
+ 365 |               </div>
+ 366 | ,->         </div>
+ 367 | `->       </motion.div>
+ 368 |         </AnimatePresence>
+ 369 |       );
+ 370 |     }
+     `----
+
+Caused by:
+    0: failed to process js file
+    1: Syntax Error
+    at wasm.wasm.__wbindgen_error_new externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35092]:0x14cb866)
+    at wasm.wasm.wasm[1883d881a7905053]::transform_sync (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[1005]:0x666203)
+    at wasm.wasm.wasm_bindgen_futures[9d7b310d6153a321]::future_to_promise::<wasm[1883d881a7905053]::transform::{closure#0}>::{closure#0}::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[13850]:0x11b9878)
+    at wasm.wasm.<wasm_bindgen_futures[9d7b310d6153a321]::queue::Queue>::new::{closure#0} (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[9603]:0xff85b8)
+    at wasm.wasm.<dyn core[f69e0e472a72c355]::ops::function::FnMut<(_,), Output = _> as wasm_bindgen[d64814e1a33cf728]::closure::WasmClosure>::describe::invoke::<wasm_bindgen[d64814e1a33cf728]::JsValue, ()> (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[34561]:0x14c7a1b)
+    at wasm.wasm.closure5233 externref shim (wasm://wasm/wasm.wasm-084a3e6e:wasm-function[35955]:0x14d0e94)
+Import trace for requested module:
+./src/components/modals/ProfileDetailModal.tsx
+./src/app/dashboard/page.tsx 
+ GET /profile 200 in 1345ms (next.js: 626ms, application-code: 719ms)
+ GET /api/messages/unread-count 200 in 982ms (next.js: 784ms, application-code: 198ms)
+ GET /api/messages/unread-count 200 in 196ms (next.js: 3ms, application-code: 193ms)
+ GET /profile/blindspots 200 in 1154ms (next.js: 1091ms, application-code: 63ms)
+ GET /api/blindspots?profileId=user-1 500 in 695ms (next.js: 678ms, application-code: 17ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+[browser] ⨯ unhandledRejection: SyntaxError: Failed to execute 'json' on 'Response': Unexpected end of JSON input
+    at fetchAnalysis (webpack-internal:///(app-pages-browser)/./src/app/profile/blindspots/page.tsx:43:32)
+ GET /api/blindspots?profileId=user-1 500 in 8ms (next.js: 2ms, application-code: 5ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+[browser] ⨯ unhandledRejection: SyntaxError: Failed to execute 'json' on 'Response': Unexpected end of JSON input
+    at fetchAnalysis (webpack-internal:///(app-pages-browser)/./src/app/profile/blindspots/page.tsx:43:32)
+ GET /dashboard 200 in 346ms (next.js: 54ms, application-code: 292ms)
+ GET /api/messages/unread-count 200 in 944ms (next.js: 10ms, application-code: 934ms)
+ GET /api/warmup 200 in 1851ms (next.js: 1747ms, application-code: 105ms)
+ GET /api/messages/unread-count 200 in 1543ms (next.js: 978ms, application-code: 565ms)
+ GET /dashboard 200 in 1113ms (next.js: 1062ms, application-code: 51ms)
+ GET /api/messages/unread-count 200 in 290ms (next.js: 17ms, application-code: 273ms)
+ GET /api/messages/unread-count 200 in 1169ms (next.js: 997ms, application-code: 173ms)
+ GET /api/profiles/feed?userId=user-1 200 in 2.2s (next.js: 1271ms, application-code: 966ms)
+ GET /api/profiles/feed?userId=user-1 200 in 846ms (next.js: 1752µs, application-code: 845ms)
+ POST /api/astrology/compatibility 404 in 2.6s (next.js: 2.4s, application-code: 132ms)
+ POST /api/match-insight 200 in 2.6s (next.js: 2.4s, application-code: 141ms)
+ POST /api/match-insight 200 in 2.8s (next.js: 2.5s, application-code: 324ms)
+ POST /api/astrology/compatibility 404 in 2.8s (next.js: 2.4s, application-code: 373ms)
+ GET / 200 in 1315ms (next.js: 1091ms, application-code: 225ms)
+ GET / 200 in 54ms (next.js: 2ms, application-code: 52ms)
+ GET /api/warmup 200 in 462ms (next.js: 11ms, application-code: 451ms)
+ GET /auth 200 in 46ms (next.js: 17ms, application-code: 29ms)
+ GET /dashboard 200 in 40ms (next.js: 16ms, application-code: 24ms)
+ GET /api/messages/unread-count 200 in 179ms (next.js: 6ms, application-code: 173ms)
+ GET /api/messages/unread-count 200 in 151ms (next.js: 5ms, application-code: 146ms)
+ GET /api/profiles/feed?userId=user-1 200 in 854ms (next.js: 4ms, application-code: 849ms)
+ GET /api/profiles/feed?userId=user-1 200 in 988ms (next.js: 4ms, application-code: 985ms)
+ POST /api/match-insight 200 in 223ms (next.js: 14ms, application-code: 209ms)
+ POST /api/match-insight 200 in 268ms (next.js: 3ms, application-code: 265ms)
+ POST /api/astrology/compatibility 404 in 366ms (next.js: 8ms, application-code: 358ms)
+ POST /api/astrology/compatibility 404 in 1178ms (next.js: 2ms, application-code: 1175ms)
+ POST /api/swipe 500 in 1651ms (next.js: 906ms, application-code: 745ms)
+Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection: Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: Error: invalid type: unit value, expected usize
+    at ignore-listed frames
+ POST /api/astrology/compatibility 404 in 3.1s (next.js: 2.7s, application-code: 424ms)
+ POST /api/match-insight 200 in 2.9s (next.js: 2.3s, application-code: 611ms)
+ POST /api/match-insight 200 in 3.3s (next.js: 2.7s, application-code: 621ms)
+ POST /api/astrology/compatibility 404 in 3.1s (next.js: 2.3s, application-code: 738ms)
+ GET /api/warmup 200 in 1262ms (next.js: 833ms, application-code: 429ms)
+ GET /api/warmup 200 in 461ms (next.js: 5ms, application-code: 456ms)
+ GET /profile 200 in 538ms (next.js: 63ms, application-code: 476ms)
+ GET /api/messages/unread-count 200 in 1722ms (next.js: 1524ms, application-code: 198ms)
+ GET /profile 200 in 280ms (next.js: 87ms, application-code: 192ms)
+ GET /api/messages/unread-count 200 in 440ms (next.js: 16ms, application-code: 425ms)
+ GET /api/warmup 200 in 573ms (next.js: 26ms, application-code: 547ms)
+ GET /api/warmup 200 in 435ms (next.js: 5ms, application-code: 430ms)
+ GET /api/warmup 200 in 512ms (next.js: 1799µs, application-code: 510ms)
+ GET /api/warmup 200 in 496ms (next.js: 8ms, application-code: 489ms)
+ GET /api/warmup 200 in 418ms (next.js: 3ms, application-code: 415ms)
+ GET /profile 200 in 380ms (next.js: 4ms, application-code: 376ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /profile 200 in 1558ms (next.js: 9ms, application-code: 1549ms)
+ GET /api/messages/unread-count 200 in 194ms (next.js: 1992µs, application-code: 192ms)
+ GET /api/warmup 200 in 405ms (next.js: 3ms, application-code: 402ms)
+ GET /profile 200 in 698ms (next.js: 3ms, application-code: 696ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /profile 200 in 417ms (next.js: 10ms, application-code: 407ms)
+ GET /api/messages/unread-count 200 in 244ms (next.js: 7ms, application-code: 237ms)
+ GET /api/warmup 200 in 476ms (next.js: 2ms, application-code: 474ms)
+ GET /profile 200 in 1625ms (next.js: 3ms, application-code: 1623ms)
+ GET /profile 200 in 1027ms (next.js: 100ms, application-code: 927ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /profile 200 in 1535ms (next.js: 11ms, application-code: 1524ms)
+ GET /profile 200 in 566ms (next.js: 4ms, application-code: 562ms)
+ GET /profile 200 in 879ms (next.js: 5ms, application-code: 874ms)
+ GET /profile 200 in 170ms (next.js: 6ms, application-code: 164ms)
+ GET /profile 200 in 965ms (next.js: 2ms, application-code: 963ms)
+ GET /profile 200 in 552ms (next.js: 5ms, application-code: 546ms)
+ GET /profile 200 in 1560ms (next.js: 7ms, application-code: 1553ms)
+ GET /profile 200 in 1700ms (next.js: 8ms, application-code: 1692ms)
+ GET /profile 200 in 538ms (next.js: 6ms, application-code: 532ms)
+ GET /profile 200 in 446ms (next.js: 5ms, application-code: 441ms)
+ GET /profile 200 in 2.7s (next.js: 2ms, application-code: 2.7s)
+ GET /profile 200 in 492ms (next.js: 6ms, application-code: 486ms)
+ GET /profile 200 in 495ms (next.js: 4ms, application-code: 491ms)
+ GET /profile 200 in 586ms (next.js: 5ms, application-code: 580ms)
+ GET /profile 200 in 618ms (next.js: 4ms, application-code: 615ms)
+ GET /profile 200 in 522ms (next.js: 5ms, application-code: 517ms)
+ GET /profile 200 in 5.2s (next.js: 3ms, application-code: 5.2s)
+ GET /profile 200 in 9.8s (next.js: 3ms, application-code: 9.8s)
+ GET /profile 200 in 676ms (next.js: 4ms, application-code: 672ms)
+ GET /profile 200 in 1074ms (next.js: 5ms, application-code: 1069ms)
+ GET /profile 200 in 918ms (next.js: 9ms, application-code: 909ms)
+ GET / 200 in 3.0s (next.js: 2.6s, application-code: 433ms)
+ GET /profile 200 in 1818ms (next.js: 1230ms, application-code: 588ms)
+ GET /profile 200 in 1637ms (next.js: 1047ms, application-code: 591ms)
+ GET /profile 200 in 1265ms (next.js: 672ms, application-code: 593ms)
+ GET /profile 200 in 2.6s (next.js: 1968ms, application-code: 595ms)
+ GET /profile 200 in 1826ms (next.js: 1229ms, application-code: 598ms)
+ GET /profile 200 in 195ms (next.js: 6ms, application-code: 189ms)
+ GET /profile 200 in 18.4s (next.js: 2ms, application-code: 18.4s)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+ GET /profile 404 in 1163ms (next.js: 863ms, application-code: 300ms)
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 2.9s (next.js: 2.8s, application-code: 97ms)
+ GET /profile 500 in 2.9s (next.js: 2.8s, application-code: 97ms)
+ GET /profile 500 in 2.8s (next.js: 2.8s, application-code: 97ms)
+ GET /profile 500 in 2.8s (next.js: 2.8s, application-code: 97ms)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 2.2s (next.js: 2.1s, application-code: 65ms)
+ GET /profile 500 in 2.2s (next.js: 2.1s, application-code: 65ms)
+ GET /profile 500 in 1751ms (next.js: 1686ms, application-code: 65ms)
+ GET /profile 500 in 1751ms (next.js: 1686ms, application-code: 65ms)
+ GET /profile 500 in 2.2s (next.js: 2.2s, application-code: 65ms)
+ GET /profile 500 in 2.2s (next.js: 2.2s, application-code: 65ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 129ms (next.js: 112ms, application-code: 17ms)
+ GET /profile 500 in 129ms (next.js: 112ms, application-code: 17ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 144ms (next.js: 128ms, application-code: 16ms)
+ GET /profile 500 in 144ms (next.js: 128ms, application-code: 16ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 149ms (next.js: 133ms, application-code: 16ms)
+ GET /profile 500 in 149ms (next.js: 133ms, application-code: 16ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 132ms (next.js: 116ms, application-code: 16ms)
+ GET /profile 500 in 132ms (next.js: 116ms, application-code: 16ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 131ms (next.js: 112ms, application-code: 19ms)
+ GET /profile 500 in 131ms (next.js: 112ms, application-code: 19ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 145ms (next.js: 129ms, application-code: 16ms)
+ GET /profile 500 in 145ms (next.js: 129ms, application-code: 16ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 143ms (next.js: 109ms, application-code: 34ms)
+ GET /profile 500 in 143ms (next.js: 109ms, application-code: 34ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 146ms (next.js: 112ms, application-code: 34ms)
+ GET /profile 500 in 146ms (next.js: 112ms, application-code: 34ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 146ms (next.js: 128ms, application-code: 18ms)
+ GET /profile 500 in 146ms (next.js: 128ms, application-code: 18ms)
+⨯ Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+Error: ENOENT: no such file or directory, open 'D:\ishaconnect\karmic-swipe\.next\dev\server\app\profile\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ishaconnect\\karmic-swipe\\.next\\dev\\server\\app\\profile\\page.js',
+  page: '/profile'
+}
+⨯ Error: Cannot find module 'D:\ishaconnect\karmic-swipe\.next\dev\server\pages\_document.js'
+Require stack:
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\require.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\load-components.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\build\utils.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\router-server.js
+- D:\ishaconnect\karmic-swipe\node_modules\next\dist\server\lib\start-server.js
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\ishaconnect\\karmic-swipe\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at ignore-listed frames
+ GET /profile 500 in 156ms (next.js: 141ms, application-code: 14ms)
+ GET /profile 500 in 156ms (next.js: 141ms, application-code: 14ms)
+⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at ignore-listed frames {
+  digest: '2311278888'
+}
+ GET /profile 500 in 37.3s (next.js: 4ms, application-code: 37.3s)

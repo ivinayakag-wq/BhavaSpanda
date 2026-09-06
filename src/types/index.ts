@@ -1,5 +1,5 @@
 /**
- * Core domain types for Karmic Swipe.
+ * Core domain types for BhavaSpanda.
  */
 
 export type ZodiacSign =

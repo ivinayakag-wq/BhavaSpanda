@@ -169,7 +169,7 @@ export default function DashboardPage() {
       {/* Header */}
       <header className="fixed left-0 right-0 top-0 z-40 flex items-center justify-between px-5 py-4" style={{ background: COLORS.bg }}>
         <h1 className="font-name text-xl font-bold" style={{ color: COLORS.textPrimary }}>
-          Isha Connect
+          BhavaSpanda
         </h1>
         <div className="flex items-center gap-2">
           <button

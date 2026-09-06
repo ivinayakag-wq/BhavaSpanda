@@ -59,7 +59,7 @@ export default function DonateModal({ open, onClose }: Props) {
 
           <div className="px-5 pb-5">
             <p className="mt-1 text-sm leading-relaxed" style={{ color: "#6B655A" }}>
-              Isha Connect is free for everyone. If you find value, consider supporting us to keep the platform running.
+              BhavaSpanda is free for everyone. If you find value, consider supporting us to keep the platform running.
             </p>
 
             {/* Preset amounts */}

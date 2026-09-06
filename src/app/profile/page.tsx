@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase-server";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Profile · Isha Connect",
+  title: "Profile · BhavaSpanda",
 };
 
 export default async function ProfilePage() {

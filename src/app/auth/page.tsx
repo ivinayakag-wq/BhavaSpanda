@@ -112,7 +112,7 @@ export default function AuthPage() {
             <p className="font-name text-2xl font-bold leading-snug text-white">
               Two souls, one heart.<br />Find your spiritual<br />companion here.
             </p>
-            <p className="mt-3 text-xs text-white/70">— Isha Connect</p>
+            <p className="mt-3 text-xs text-white/70">— BhavaSpanda</p>
           </div>
         </div>
 
@@ -125,7 +125,7 @@ export default function AuthPage() {
               <div className="flex h-9 w-9 items-center justify-center rounded-full" style={{ background: "#EC4899" }}>
                 <Heart className="h-4 w-4 text-white" fill="white" />
               </div>
-              <span className="font-name text-base font-bold" style={{ color: "#1A1A1A" }}>Isha Connect</span>
+              <span className="font-name text-base font-bold" style={{ color: "#1A1A1A" }}>BhavaSpanda</span>
             </div>
 
             <h1 className="font-name text-2xl font-bold" style={{ color: "#1A1A1A" }}>

@@ -41,7 +41,7 @@ export async function sendPushToAll(
   vapidPublicKey: string,
 ) {
   const webpush = await import("web-push");
-  webpush.setVapidDetails("mailto:support@ishaconnect.app", vapidPublicKey, vapidPrivateKey);
+  webpush.setVapidDetails("mailto:support@bhavaspanda.com", vapidPublicKey, vapidPrivateKey);
 
   const results = await Promise.allSettled(
     subscriptions.map((sub) =>

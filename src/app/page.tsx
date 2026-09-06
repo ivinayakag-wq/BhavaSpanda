@@ -21,7 +21,7 @@ export default function Home() {
           <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: "#EC4899" }}>
             <Heart className="h-5 w-5 text-white" fill="white" />
           </div>
-          <span className="font-name text-lg font-bold" style={{ color: "#1A1A1A" }}>Isha Connect</span>
+          <span className="font-name text-lg font-bold" style={{ color: "#1A1A1A" }}>BhavaSpanda</span>
         </div>
         <div className="hidden items-center gap-8 md:flex">
           <a href="#how-it-works" className="text-sm font-medium transition-colors hover:text-[#EC4899]" style={{ color: "#6B655A" }}>Features</a>
@@ -471,7 +471,7 @@ export default function Home() {
             <div className="flex h-9 w-9 items-center justify-center rounded-full" style={{ background: "#EC4899" }}>
               <Heart className="h-4 w-4 text-white" fill="white" />
             </div>
-            <span className="font-name text-base font-bold" style={{ color: "#1A1A1A" }}>Isha Connect</span>
+            <span className="font-name text-base font-bold" style={{ color: "#1A1A1A" }}>BhavaSpanda</span>
           </div>
           <div className="flex items-center gap-6">
             <a href="#how-it-works" className="text-sm font-medium transition-colors hover:text-[#EC4899]" style={{ color: "#6B655A" }}>Features</a>
@@ -488,7 +488,7 @@ export default function Home() {
           </div>
         </div>
         <p className="mt-6 text-center text-xs" style={{ color: "#6B655A" }}>
-          &copy; {new Date().getFullYear()} Isha Connect — Built by seekers, for seekers. Privacy First.
+          &copy; {new Date().getFullYear()} BhavaSpanda — Built by seekers, for seekers. Privacy First.
         </p>
       </footer>
     </div>

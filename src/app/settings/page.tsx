@@ -210,7 +210,7 @@ export default function SettingsPage() {
         </Section>
 
         <Section title="Support" icon={HelpCircle}>
-          <Row onClick={() => window.open("https://ishaconnect.app/help", "_blank")}>
+          <Row onClick={() => window.open("https://bhavaspanda.com/help", "_blank")}>
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-full" style={{ background: "rgba(236,103,27,0.08)" }}>
                 <HelpCircle className="h-4 w-4" style={{ color: C.primary }} />
