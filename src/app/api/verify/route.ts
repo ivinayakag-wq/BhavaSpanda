@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import Groq from "groq-sdk";
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY! });
+import { getGroqClient } from "@/lib/groq";
 
 /* ───── Helpers ───── */
 
@@ -10,6 +8,7 @@ function delay(ms: number) {
 }
 
 async function groqParse<T>(messages: { role: string; content: any }[], model = "llama-3.3-70b-versatile"): Promise<T> {
+  const groq = getGroqClient();
   const completion = await groq.chat.completions.create({
     model,
     messages: messages as any,
